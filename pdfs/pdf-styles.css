@@ -693,8 +693,14 @@ strong {
     margin-bottom: 0;
     padding: 22px 18px;
     box-shadow: none;
+    border-bottom: 1px solid rgba(42, 59, 85, 0.36);
   }
 
+  .pdf-page:last-child {
+    border-bottom: none;
+  }
+
+  /* ── Grids ── */
   .grid-2,
   .grid-3,
   .split,
@@ -702,14 +708,98 @@ strong {
     grid-template-columns: 1fr;
   }
 
+  /* ── Timeline ── */
   .timeline {
     grid-template-columns: 1fr;
+    margin: 14px 0;
   }
 
   .timeline-arrow {
-    height: 8mm;
+    height: 20px;
     width: 1px;
     margin: 0 auto;
+  }
+
+  /* ── Cover / brand ── */
+  .brand-mark {
+    margin-bottom: 18px;
+  }
+
+  .cover-art {
+    min-height: 90px;
+    margin-top: 18px;
+  }
+
+  .cover-art::before,
+  .cover-art::after {
+    display: none;
+  }
+
+  .cover-subtitle {
+    margin-top: 10px;
+  }
+
+  /* ── Typography & spacing ── */
+  .eyebrow {
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    margin-bottom: 12px;
+  }
+
+  .soft-rule {
+    margin: 12px 0;
+  }
+
+  .note {
+    margin-top: 10px;
+  }
+
+  .page-footer {
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+
+  /* ── Highlight box ── */
+  .highlight {
+    margin: 12px 0;
+    padding: 10px 12px;
+    font-size: 11pt;
+  }
+
+  /* ── Big write fields: reduce from ~128px to a compact size ── */
+  .big-field {
+    min-height: 56px;
+  }
+
+  /* ── Layer cards: remove fixed height + shrink top padding ── */
+  .layer-card {
+    min-height: auto;
+    padding-top: 42px;
+  }
+
+  /* ── Ritual header ── */
+  .ritual-header {
+    grid-template-columns: 44px 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .night-number {
+    width: 44px;
+    height: 44px;
+    font-size: 14pt;
+  }
+
+  /* ── Sleep diary table: scroll instead of overflow ── */
+  .table-card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-card table {
+    min-width: 480px;
   }
 }
 
