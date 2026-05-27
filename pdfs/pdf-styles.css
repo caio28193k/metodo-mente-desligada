@@ -65,7 +65,7 @@ strong {
   display: flex;
   flex-direction: column;
   width: min(100%, 210mm);
-  min-height: 297mm;
+  /* min-height applied only on desktop via media query below */
   margin: 0 auto 18px;
   padding: 16mm;
   overflow: hidden;
@@ -682,6 +682,13 @@ strong {
   page-break-inside: avoid;
 }
 
+/* Desktop: simulate A4 page height on screen */
+@media screen and (min-width: 821px) {
+  .pdf-page {
+    min-height: 297mm;
+  }
+}
+
 @media screen and (max-width: 820px) {
   .pdf-document {
     padding: 0;
@@ -689,7 +696,7 @@ strong {
 
   .pdf-page {
     width: 100%;
-    min-height: auto;
+    /* no min-height — pages collapse to content height */
     margin-bottom: 0;
     padding: 22px 18px;
     box-shadow: none;
