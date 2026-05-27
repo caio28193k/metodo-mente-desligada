@@ -541,6 +541,59 @@
       font-weight: 850;
     }
 
+    .practice-proof {
+      margin-top: 18px;
+      padding: 16px;
+      border: 1px solid rgba(42, 59, 85, 0.86);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0)),
+        rgba(16, 27, 46, 0.72);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
+    }
+
+    .practice-proof h3 {
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: clamp(1.22rem, 4.6vw, 1.8rem);
+    }
+
+    .practice-proof > p {
+      margin-bottom: 14px;
+    }
+
+    .practice-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .practice-card {
+      padding: 14px;
+      border: 1px solid rgba(185, 167, 255, 0.2);
+      border-radius: var(--radius);
+      background: rgba(7, 17, 31, 0.3);
+    }
+
+    .practice-card h4 {
+      margin: 0 0 7px;
+      color: var(--breath);
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .practice-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .practice-note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.35;
+    }
+
     .checkout {
       padding-bottom: 84px;
       background:
@@ -778,6 +831,14 @@
 
       .offer-box {
         grid-template-columns: minmax(0, 1.1fr) minmax(310px, 0.72fr);
+      }
+
+      .practice-proof {
+        grid-column: 1 / -1;
+      }
+
+      .practice-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .checkout-grid {
@@ -1056,6 +1117,26 @@
               <li>Cartões de Ordem Final</li>
             </ul>
             <p class="mini-note">Não é aula longa nem meditação complicada. Na noite 1 você tira peso da cabeça; na 3 sente a respiração mais solta; na 7 tem um roteiro simples para repetir.</p>
+          </div>
+
+          <div class="practice-proof">
+            <h3>Por que esse ritual é fácil de testar hoje</h3>
+            <p>Criado para noites reais: quando a cabeça está cheia, o corpo está cansado e você não quer assistir aula longa antes de dormir.</p>
+            <div class="practice-grid">
+              <article class="practice-card">
+                <h4>Começa pela cabeça cheia</h4>
+                <p>O Inventário Cru tira da mente as abas abertas: tarefas, mensagens, cobranças e pendências que aparecem quando a luz apaga.</p>
+              </article>
+              <article class="practice-card">
+                <h4>Não exige meditação difícil</h4>
+                <p>O Freio 4-6 usa uma respiração simples: inspirar curto, soltar o ar mais longo e reduzir o ritmo sem complicação.</p>
+              </article>
+              <article class="practice-card">
+                <h4>Fecha o dia com comando</h4>
+                <p>A Ordem Final usa uma frase curta para marcar que o dia terminou por agora — e que amanhã continua amanhã.</p>
+              </article>
+            </div>
+            <p class="practice-note">Material educativo. Resultados variam conforme rotina, contexto e constância.</p>
           </div>
         </div>
       </div>
