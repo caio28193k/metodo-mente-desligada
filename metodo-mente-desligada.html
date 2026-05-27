@@ -6,6 +6,12 @@
   <meta name="description" content="Método Mente Desligada: ritual noturno de 7 noites para fechar pendências mentais antes de dormir.">
   <meta name="theme-color" content="#07111F">
   <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <link rel="preload" as="image"
+    href="assets/mente-desligada/hero-night-ritual-640.webp"
+    imagesrcset="assets/mente-desligada/hero-night-ritual-640.webp 640w, assets/mente-desligada/hero-night-ritual-1024.webp 1024w"
+    imagesizes="(max-width: 719px) 100vw, 36vw"
+    type="image/webp">
   <title>Método Mente Desligada | Protocolo Fecha-Abas</title>
   <script>
     document.documentElement.classList.add("js");
@@ -1001,15 +1007,21 @@
       }
     }
   </style>
-  <!-- Meta Pixel -->
+  <!-- Meta Pixel (deferred) -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+    f.loadMetaPixel=function(){if(n.scriptRequested)return;n.scriptRequested=!0;
+    var t=document.createElement('script');t.async=!0;
+    t.src='https://connect.facebook.net/en_US/fbevents.js';
+    document.head.appendChild(t)}}(window);
     fbq('init','1472803597362725');
     fbq('track','PageView');
+    (function(){function l(){if(window.loadMetaPixel)window.loadMetaPixel()}
+    function o(){l();['pointerdown','keydown','scroll'].forEach(function(e){window.removeEventListener(e,o)})}
+    ['pointerdown','keydown','scroll'].forEach(function(e){window.addEventListener(e,o,{once:true,passive:true})});
+    window.addEventListener('load',function(){setTimeout(l,3500)},{once:true})})();
   </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1472803597362725&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel -->
@@ -1156,18 +1168,6 @@
     });
 
     const revealItems = document.querySelectorAll(".reveal");
-    const stickyCta = document.querySelector(".sticky-cta");
-
-    const toggleStickyCta = () => {
-      if (!stickyCta) return;
-
-      const shouldShow = window.matchMedia("(max-width: 719px)").matches && window.scrollY > 320;
-      stickyCta.classList.toggle("is-visible", shouldShow);
-    };
-
-    toggleStickyCta();
-    window.addEventListener("scroll", toggleStickyCta, { passive: true });
-    window.addEventListener("resize", toggleStickyCta);
 
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver((entries) => {
