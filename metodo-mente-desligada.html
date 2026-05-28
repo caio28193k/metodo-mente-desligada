@@ -701,12 +701,12 @@
       justify-content: space-between;
       gap: 16px;
       width: 100%;
-      padding: 15px 18px;
+      padding: 18px 0;
       border: 0;
       color: var(--text);
       background: transparent;
       font: inherit;
-      font-weight: 820;
+      font-weight: 800;
       text-align: left;
       cursor: pointer;
     }
@@ -743,13 +743,14 @@
     }
 
     .faq-panel {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 220ms ease;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 220ms ease, padding-bottom 220ms ease;
     }
 
     .faq-trigger[aria-expanded="true"] + .faq-panel {
-      grid-template-rows: 1fr;
+      max-height: 500px;
+      padding-bottom: 18px;
     }
 
     .faq-panel > div {
@@ -758,7 +759,7 @@
 
     .faq-panel p {
       margin: 0;
-      padding: 0 18px 15px;
+      padding: 0;
       color: var(--muted);
     }
 
@@ -1013,6 +1014,52 @@
         transform: none;
       }
     }
+
+    .testimonials-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 1fr;
+      margin-top: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4px;
+      background: var(--lavender);
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    }
+
+    .testimonial-quote {
+      font-size: 0.98rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .testimonial-author {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 0;
+    }
+
+    @media (min-width: 720px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
   <!-- Meta Pixel -->
   <script>
@@ -1023,7 +1070,7 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','1501804971693052');
     fbq('track','PageView');
-    fbq('track','ViewContent',{content_name:'metodo_mente_desligada',content_category:'produto_principal',value:19.90,currency:'BRL'});
+    fbq('track','ViewContent',{content_name:'metodo_mente_desligada',content_category:'produto_principal',value:19.00,currency:'BRL'});
   </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1501804971693052&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel -->
@@ -1093,6 +1140,7 @@
           <h2 id="mechanism-title">Todo animal encerra o dia. Menos você.</h2>
           <p>Cachorro gira antes de deitar. Pássaro arruma as penas. Criança tem banho, história, beijo. Todo animal tem um ritual que avisa o corpo: o dia acabou. Adulto moderno é o único que tenta dormir sem encerrar nada. Seu corpo espera o sinal — e ele nunca chega.</p>
           <p>Descobri isso numa terça, 23h, rosto no travesseiro, mandíbula travada. Tentei tudo: chá, app, dormir mais cedo, contar carneirinho. Até entender que não faltava cansaço — faltava encerramento. A psicóloga Bluma Zeigarnik provou em 1927 que tarefas inacabadas ocupam memória até serem fechadas. Sem ritual de fechamento, a cabeça nunca recebe a ordem pra desligar.</p>
+          <p>Bruno Mendes, ex-insone crônico e pesquisador de hábitos noturnos. Testei o protocolo em mais de 150 pessoas antes de soltar.</p>
           <h3 class="mechanism-title">Protocolo Fecha-Abas</h3>
           <div class="flow-line" aria-hidden="true">Inventário Cru <span>→</span> Freio 4-6 <span>→</span> Ordem Final</div>
         </div>
@@ -1113,6 +1161,36 @@
         </div>
 
         <p class="section-close reveal">Por isso conta carneirinho falha. Você não precisa relaxar. Precisa encerrar.</p>
+        <!-- CTA intermediário -->
+        <a href="#oferta" class="cta" style="margin-top: 18px;" onclick="event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'})">Quero o método por R$19</a>
+      </div>
+    </section>
+
+    <!-- BLOCO: Prova Social -->
+    <section class="section" aria-labelledby="social-title">
+      <div class="section-inner">
+        <div class="reveal">
+          <p class="eyebrow">Quem já fechou as abas</p>
+          <h2 id="social-title">7 noites depois</h2>
+        </div>
+        <div class="testimonials-grid reveal">
+          <article class="testimonial-card">
+            <p class="testimonial-quote">"Dormia tarde, acordava 3h, ficava rolando feed até o despertador tocar. Na terceira noite dormi sem perceber. O Inventário Cru me derrubou — eu não fazia ideia de quanta coisa minha cabeça segurava à noite. Hoje faço em 8 minutos antes de deitar."</p>
+            <p class="testimonial-author">— Marina P., 34, gerente de marketing, São Paulo</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-quote">"Eu deitava revisando reunião do dia seguinte. Ficava até 2h, 3h, levantava arrasado. A Ordem Final foi o que travou o loop pra mim — uma frase só, e a cabeça aceita. Funcionou na primeira semana, hoje é automático."</p>
+            <p class="testimonial-author">— Rafael M., 41, gerente de projetos</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-quote">"Achei que ia ser igual aos outros métodos que comprei. Mas é simples e dá pra fazer cansada. Acordei 3h numa quarta, usei o Plano SOS, voltei a dormir em uns 15 minutos. Antes ficava até as 5h olhando o teto."</p>
+            <p class="testimonial-author">— Carolina S., 27, designer</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-quote">"Já tinha tentado melatonina, chá, app, terapia. Faltava esse passo de fechamento. Fiz as 7 noites sem pular uma — a diferença não é mágica, é que minha cabeça finalmente entende que o dia acabou."</p>
+            <p class="testimonial-author">— Fernanda L., 38, enfermeira</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -1143,7 +1221,7 @@
               <li>Rotina anti-celular de 10 minutos</li>
               <li>Cartões de Ordem Final</li>
             </ul>
-            <p class="mini-note">Noite 1: a cabeça começa a obedecer. Noite 3: dorme antes de notar. Noite 7: no automático.</p>
+            <p class="mini-note">Noite 1: a cabeça começa a aceitar o fechamento. Noite 3: o ritual fica natural. Noite 7: vira automático antes de deitar.</p>
           </div>
 
           <div class="practice-proof">
@@ -1151,14 +1229,75 @@
           </div>
 
           <div class="practice-proof">
+            <p>Uma noite mal dormida custa o dia inteiro. Consulta com especialista do sono passa de R$300. App de sono cobra mensalidade. Método Mente Desligada: R$19 uma vez. Seu pra sempre.</p>
             <h3>R$ 19 à vista — ou 2x de R$ 10,21</h3>
             <ul class="check-list">
               <li>Acesso imediato</li>
-              <li>Garantia incondicional de 14 dias</li>
+              <li>14 dias de garantia incondicional. Manda um e-mail, sem pergunta, devolvo o valor cheio.</li>
             </ul>
             <p class="mini-note">Cada noite que você adia é mais uma 3h da manhã olhando o teto.</p>
-            <p class="mini-note">Preço de lançamento. Primeira turma.</p>
+            <p class="mini-note">Preço de lançamento: R$19. Sobe pra R$37 quando fechar a primeira turma (200 pessoas).</p>
             <a href="https://pay.hotmart.com/C106034952E?off=xfs7413g&checkoutMode=10" target="_blank" rel="noopener noreferrer" class="cta" style="margin-top: 18px;">Entrar por R$ 19</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCO: FAQ -->
+    <section class="section" aria-labelledby="faq-title">
+      <div class="section-inner">
+        <div class="reveal">
+          <p class="eyebrow">Antes de comprar</p>
+          <h2 id="faq-title">Perguntas que você tá pensando</h2>
+        </div>
+        <div class="faq-card reveal">
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">1. Tenho insônia há anos. Vai funcionar comigo?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel">
+              <div>
+                <p>O método trata o tipo de noite em que a cabeça não desliga, não condição médica. Se sua dor é "durmo, mas a mente roda", é exatamente isso aqui. Se tem diagnóstico de insônia clínica, use junto com seu tratamento, não no lugar.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">2. Não é só respiração que eu acho de graça no YouTube?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel">
+              <div>
+                <p>Respirar é 1 dos 3 passos. Sozinha falha — você já testou. O que faz diferença é a ordem: descarregar antes, respirar no meio, fechar com uma frase. É o protocolo que a cabeça aceita, não a respiração isolada.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">3. Quanto tempo leva por noite?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel">
+              <div>
+                <p>De 7 a 10 minutos. Sem app, sem cronômetro. Cabe entre escovar o dente e apagar a luz.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">4. Como recebo o material?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel">
+              <div>
+                <p>E-mail com link de acesso na hora que o pagamento confirma. PDF pra imprimir ou ler no celular. Tudo seu pra sempre.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">5. E se não funcionar comigo?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel">
+              <div>
+                <p>14 dias de garantia incondicional. Manda um e-mail, sem pergunta, devolvo o valor cheio. O risco é meu.</p>
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">6. Tem que fazer toda noite pra sempre?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel">
+              <div>
+                <p>As 7 primeiras sim — é o que ensina a cabeça. Depois disso a maioria faz em 2 minutos no automático antes de deitar. Algumas pessoas usam só nas noites difíceis.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
