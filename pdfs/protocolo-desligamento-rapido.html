@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocolo Desligamento Rápido — Método Mente Desligada</title>
+  <meta name="description" content="Protocolo de 90 segundos do Método Mente Desligada para desacelerar corpo, respiração e mente quando o tempo é curto.">
+  <link rel="stylesheet" href="./pdf-styles.css">
+  <style>
+    .timer-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 3mm;
+      margin-bottom: 6mm;
+      padding: 3mm 5mm;
+      border: 1px solid rgba(124, 255, 203, 0.34);
+      border-radius: 999px;
+      color: var(--mint);
+      background: rgba(124, 255, 203, 0.08);
+      font-size: 9pt;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .steps-90 {
+      display: grid;
+      gap: 5mm;
+      margin-bottom: 8mm;
+    }
+
+    .step-90 {
+      display: grid;
+      grid-template-columns: 18mm 1fr;
+      gap: 5mm;
+      align-items: start;
+      padding: 5mm;
+      border: 1px solid rgba(42, 59, 85, 0.92);
+      border-radius: 8px;
+      background: rgba(16, 27, 46, 0.78);
+      break-inside: avoid;
+    }
+
+    .step-90-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2mm;
+      text-align: center;
+    }
+
+    .step-90-num {
+      display: grid;
+      place-items: center;
+      width: 10mm;
+      height: 10mm;
+      border-radius: 999px;
+      color: #07111F;
+      font-size: 11pt;
+      font-weight: 950;
+    }
+
+    .step-90-time {
+      color: var(--muted);
+      font-size: 8pt;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .step-90-right {}
+
+    .step-90-title {
+      margin: 0 0 2mm;
+      color: var(--text);
+      font-size: 13pt;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .step-90-layer {
+      display: inline-block;
+      margin-bottom: 3mm;
+      font-size: 7.5pt;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .step-90-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10.5pt;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .when-box {
+      margin-bottom: 8mm;
+      padding: 6mm;
+      border: 1px solid rgba(42, 59, 85, 0.92);
+      border-radius: 8px;
+      background: rgba(16, 27, 46, 0.78);
+    }
+
+    .when-title {
+      margin: 0 0 4mm;
+      color: var(--text);
+      font-size: 12pt;
+      font-weight: 900;
+    }
+
+    .when-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm;
+    }
+
+    .when-item {
+      display: grid;
+      grid-template-columns: 5mm 1fr;
+      gap: 3mm;
+      align-items: start;
+      color: var(--muted);
+      font-size: 10pt;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .when-dot {
+      width: 5mm;
+      height: 5mm;
+      margin-top: 1.5mm;
+      border-radius: 999px;
+      background: rgba(169, 214, 229, 0.5);
+      flex-shrink: 0;
+    }
+
+    .reminder-box {
+      padding: 6mm 7mm;
+      border: 1px solid rgba(124, 255, 203, 0.38);
+      border-radius: 8px;
+      background: rgba(124, 255, 203, 0.07);
+      text-align: center;
+    }
+
+    .reminder-label {
+      margin: 0 0 3mm;
+      color: var(--mint);
+      font-size: 8pt;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .reminder-text {
+      margin: 0;
+      color: var(--text);
+      font-size: 13pt;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    /* Print */
+    @media print {
+      .step-90,
+      .when-box {
+        background: #FFFFFF !important;
+        border-color: var(--border) !important;
+      }
+
+      .step-90-title,
+      .when-title {
+        color: var(--text) !important;
+      }
+
+      .reminder-box {
+        border-color: var(--mint) !important;
+        background: #F6FFF9 !important;
+      }
+
+      .reminder-text {
+        color: var(--text) !important;
+      }
+    }
+
+    /* Mobile */
+    @media screen and (max-width: 820px) {
+      .step-90 {
+        grid-template-columns: 14mm 1fr;
+        gap: 12px;
+      }
+
+      .when-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="download-toolbar" aria-label="Download do material">
+    <a class="download-button" href="./protocolo-desligamento-rapido.pdf" download>Baixar PDF</a>
+  </nav>
+  <main class="pdf-document">
+    <section class="pdf-page cover">
+      <div class="page-content">
+        <div class="brand-mark">Bônus • Método Mente Desligada</div>
+        <h1 class="cover-title">Protocolo Desligamento Rápido</h1>
+        <p class="cover-subtitle">90 segundos para sair do modo alerta</p>
+        <p class="cover-statement">Quando não há tempo para o ritual completo, este protocolo faz o mínimo necessário para a cabeça receber o sinal de encerramento.</p>
+        <div class="cover-art" aria-hidden="true">
+          <span class="moon-symbol"></span>
+          <div class="mini-product">
+            <strong>90 segundos</strong>
+            <span>Corpo. Respiração. Mente.</span>
+          </div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <span>Método Mente Desligada • Material educativo</span>
+        <span>p. <span class="page-number"></span></span>
+      </footer>
+    </section>
+
+    <section class="pdf-page">
+      <div class="page-content">
+        <p class="eyebrow">Quando usar</p>
+        <h2 class="page-title">Use este protocolo quando...</h2>
+        <div class="when-box">
+          <p class="when-title">Situações em que o protocolo se aplica</p>
+          <div class="when-grid">
+            <div class="when-item"><span class="when-dot"></span><span>Você está com sono mas a cabeça não para</span></div>
+            <div class="when-item"><span class="when-dot"></span><span>Você tem menos de 2 minutos antes de deitar</span></div>
+            <div class="when-item"><span class="when-dot"></span><span>Você não conseguiu fazer o ritual completo</span></div>
+            <div class="when-item"><span class="when-dot"></span><span>Você precisa de uma pausa rápida no meio da noite</span></div>
+            <div class="when-item"><span class="when-dot"></span><span>É tarde e a mente ainda está resolvendo problemas</span></div>
+            <div class="when-item"><span class="when-dot"></span><span>Você quer um reset antes de tentar dormir de novo</span></div>
+          </div>
+        </div>
+
+        <div class="timer-strip">⏱ 90 segundos no total</div>
+
+        <div class="steps-90">
+
+          <div class="step-90">
+            <div class="step-90-left">
+              <span class="step-90-num" style="background: var(--lavender);">1</span>
+              <span class="step-90-time">30 seg</span>
+            </div>
+            <div class="step-90-right">
+              <p class="step-90-layer accent-lavender">Corpo</p>
+              <h3 class="step-90-title">Solte a tensão física</h3>
+              <p class="step-90-desc">Solte os ombros. Descruze o maxilar. Abra as mãos. Perceba onde o corpo está travado e deixe ir. Não precisa ser perfeito — só consciente.</p>
+            </div>
+          </div>
+
+          <div class="step-90">
+            <div class="step-90-left">
+              <span class="step-90-num" style="background: var(--breath);">2</span>
+              <span class="step-90-time">30 seg</span>
+            </div>
+            <div class="step-90-right">
+              <p class="step-90-layer accent-breath">Respiração</p>
+              <h3 class="step-90-title">Freio 4-6 — 3 ciclos</h3>
+              <p class="step-90-desc">Inspire contando até 4. Solte contando até 6. Repita 3 vezes. A expiração mais longa ativa o freio fisiológico — o corpo começa a desacelerar.</p>
+            </div>
+          </div>
+
+          <div class="step-90">
+            <div class="step-90-left">
+              <span class="step-90-num" style="background: var(--mint);">3</span>
+              <span class="step-90-time">30 seg</span>
+            </div>
+            <div class="step-90-right">
+              <p class="step-90-layer accent-mint">Mente</p>
+              <h3 class="step-90-title">Ordem Final</h3>
+              <p class="step-90-desc">Repita em voz baixa ou em pensamento: <em style="color: var(--text);">"Tá tudo guardado. Pode dormir."</em> Diga uma vez. A cabeça recebe o sinal de que o dia acabou.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="reminder-box">
+          <p class="reminder-label">Regra deste protocolo</p>
+          <p class="reminder-text">Não é sobre fazer perfeito. É sobre dar à cabeça um sinal mínimo de encerramento. 90 segundos já mudam o estado interno.</p>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <span>Método Mente Desligada • Material educativo</span>
+        <span>p. <span class="page-number"></span></span>
+      </footer>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll(".download-button").forEach(function(button) {
+      button.addEventListener("click", async function(event) {
+        var href = button.getAttribute("href");
+        if (!href || window.location.protocol === "file:") return;
+
+        event.preventDefault();
+
+        try {
+          var response = await fetch(href, { cache: "no-store" });
+          if (!response.ok) throw new Error("download");
+
+          var blobUrl = URL.createObjectURL(await response.blob());
+          var anchor = document.createElement("a");
+          anchor.href = blobUrl;
+          anchor.download = button.getAttribute("download") || href.split("/").pop();
+          document.body.appendChild(anchor);
+          anchor.click();
+          anchor.remove();
+          setTimeout(function() { URL.revokeObjectURL(blobUrl); }, 30000);
+        } catch (error) {
+          window.location.href = href;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
