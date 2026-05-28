@@ -1060,6 +1060,156 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+
+    .value-stack {
+      background: rgba(7, 17, 31, 0.5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      margin: 24px 0;
+    }
+    .value-stack-title {
+      margin: 0 0 14px;
+      color: var(--breath);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .value-stack-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 14px;
+    }
+    .value-stack-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(42, 59, 85, 0.5);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    .value-stack-list li:last-child { border-bottom: none; }
+    .value-amount {
+      color: var(--muted);
+      font-weight: 700;
+      text-decoration: line-through;
+      white-space: nowrap;
+    }
+    .value-stack-total, .value-stack-today {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      font-weight: 800;
+    }
+    .value-stack-total {
+      border-top: 2px solid var(--border);
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+    .value-total-amount {
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .value-stack-today {
+      color: var(--mint);
+      font-size: 1.35rem;
+    }
+    .value-today-amount {
+      color: var(--mint);
+      font-size: 1.8rem;
+    }
+    .value-stack-note {
+      margin: 8px 0 0;
+      color: var(--breath);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .double-guarantee {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (min-width: 720px) {
+      .double-guarantee { grid-template-columns: 1fr 1fr; }
+    }
+    .guarantee-card {
+      background: rgba(124, 255, 203, 0.06);
+      border: 1px solid rgba(124, 255, 203, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+    }
+    .guarantee-tag {
+      margin: 0 0 8px;
+      color: var(--mint);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .guarantee-card p:not(.guarantee-tag) {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .guarantee-card strong {
+      color: var(--mint);
+    }
+
+    .ps-block {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .ps-line {
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .ps-line:last-child { margin-bottom: 0; }
+    .ps-line strong {
+      color: var(--mint);
+      font-weight: 900;
+    }
+
+    .sticky-cta-mobile { display: none; }
+    @media (max-width: 768px) {
+      .sticky-cta-mobile {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(7, 17, 31, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border);
+        z-index: 100;
+        transform: translateY(110%);
+        transition: transform 280ms ease;
+        pointer-events: none;
+      }
+      .sticky-cta-mobile.is-visible {
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+      .sticky-cta-mobile .cta {
+        width: 100%;
+        min-height: 50px;
+        font-size: 0.95rem;
+        margin: 0;
+      }
+      body.has-sticky-cta { padding-bottom: 80px; }
+    }
   </style>
   <!-- Meta Pixel -->
   <script>
@@ -1236,14 +1386,53 @@
 
           <div class="practice-proof">
             <p>R$19. Menos que um delivery que você nem ia gostar. Menos que uma cerveja num bar que você nem ia querer ir. Menos que UMA noite acordado custa em produtividade no dia seguinte. Consulta com especialista do sono passa de R$300. App de sono cobra mensalidade. Isso aqui: R$19 uma vez. Seu pra sempre.</p>
+            
+            <!-- TIER 1: stack de valor -->
+            <div class="value-stack">
+              <p class="value-stack-title">O que você está levando:</p>
+              <ul class="value-stack-list">
+                <li><span>Protocolo Fecha-Abas (7 noites completas)</span><span class="value-amount">R$147</span></li>
+                <li><span>Plano SOS pras noites que acorda 3h</span><span class="value-amount">R$67</span></li>
+                <li><span>Mapa visual + Checklist + Diário do Sono</span><span class="value-amount">R$47</span></li>
+                <li><span>Bônus: Protocolo Desligamento Rápido (90s)</span><span class="value-amount">R$37</span></li>
+                <li><span>Bônus: Cartões de Ordem Final</span><span class="value-amount">R$37</span></li>
+                <li><span>Bônus: Rotina anti-celular de 10 minutos</span><span class="value-amount">R$27</span></li>
+              </ul>
+              <div class="value-stack-total">
+                <span>Valor total:</span><span class="value-total-amount">R$362</span>
+              </div>
+              <div class="value-stack-today">
+                <span>Hoje:</span><span class="value-today-amount">R$19</span>
+              </div>
+              <p class="value-stack-note">95% off porque é lançamento. Sobe pra R$37 quando fechar 200 pessoas.</p>
+            </div>
+
             <h3>R$ 19 à vista — ou 2x de R$ 10,21</h3>
+            
+            <!-- TIER 1: dupla garantia -->
             <ul class="check-list">
               <li>Acesso imediato</li>
-              <li>14 dias de garantia incondicional. Manda um e-mail, sem pergunta, devolvo o valor cheio.</li>
             </ul>
+            <div class="double-guarantee">
+              <div class="guarantee-card">
+                <p class="guarantee-tag">Garantia 1 — 14 dias</p>
+                <p>Compra, usa, testa. Se em 14 dias não tiver dormido melhor, manda um e-mail. Devolvo cada centavo. Sem pergunta, sem formulário, sem complicação.</p>
+              </div>
+              <div class="guarantee-card">
+                <p class="guarantee-tag">Garantia 2 — Execução</p>
+                <p>Fez as 7 noites completas, todas, sem pular uma, e ainda assim não notou diferença? Manda print do diário do sono preenchido. Devolvo o dinheiro <strong>e você fica com todo o material</strong>. O risco é todo meu.</p>
+              </div>
+            </div>
+
             <p class="mini-note">Cada noite adiada é mais uma 3h olhando o teto. Mais um amanhã pesado. Mais uma semana que termina pior do que começou.</p>
             <p class="mini-note">R$19 hoje. R$37 quando passar de 200 pessoas. Decide rápido.</p>
             <a href="https://pay.hotmart.com/C106034952E?off=xfs7413g&checkoutMode=10" target="_blank" rel="noopener noreferrer" class="cta" style="margin-top: 18px;">ENTRAR AGORA — R$19</a>
+            
+            <!-- TIER 1: PS final -->
+            <div class="ps-block">
+              <p class="ps-line"><strong>P.S.</strong> — Se você chegou até aqui é porque a coisa tá feia. 3h da manhã virou costume. R$19 é menos do que custou seu último delivery — só que esse aqui você não esquece, porque é o que vai te fazer dormir. Decide hoje.</p>
+              <p class="ps-line"><strong>P.P.S.</strong> — A garantia de 14 dias existe exatamente pra esse momento. Você não vai descobrir se funciona pensando. Vai descobrir fazendo. Se não funcionar, o dinheiro volta. O único risco real aqui é continuar acordado.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1309,7 +1498,11 @@
       </div>
     </section>
 
-  </main>
+    <!-- TIER 1: sticky CTA mobile -->
+    <div class="sticky-cta-mobile" id="stickyCta" aria-hidden="true">
+      <a href="#oferta" class="cta" onclick="event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'})">ENTRAR AGORA — R$19</a>
+    </div>
+    </main>
 
   <script>
     document.querySelectorAll('a[href*="hotmart.com"]').forEach(function(btn) {
@@ -1331,6 +1524,28 @@
         button.setAttribute("aria-expanded", String(!isOpen));
       });
     });
+
+    // Sticky CTA mobile
+    const stickyCta = document.getElementById('stickyCta');
+    const heroSection = document.querySelector('.hero');
+    const offerSection = document.getElementById('oferta');
+    function updateStickyCta() {
+      if (!stickyCta || !heroSection || !offerSection) return;
+      const heroBottom = heroSection.getBoundingClientRect().bottom;
+      const offerTop = offerSection.getBoundingClientRect().top;
+      const offerBottom = offerSection.getBoundingClientRect().bottom;
+      const viewportHeight = window.innerHeight;
+      // Mostra quando passou do hero E a oferta ainda não está visível
+      const pastHero = heroBottom < 0;
+      const offerNotVisible = offerTop > viewportHeight * 0.6 || offerBottom < 0;
+      const shouldShow = pastHero && offerNotVisible;
+      stickyCta.classList.toggle('is-visible', shouldShow);
+      document.body.classList.toggle('has-sticky-cta', shouldShow);
+      stickyCta.setAttribute('aria-hidden', String(!shouldShow));
+    }
+    window.addEventListener('scroll', updateStickyCta, { passive: true });
+    window.addEventListener('resize', updateStickyCta, { passive: true });
+    updateStickyCta();
 
     const revealItems = document.querySelectorAll(".reveal");
 
