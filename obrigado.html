@@ -21,19 +21,51 @@
       var params = new URLSearchParams(window.location.search);
       var transactionId = params.get('transaction') || params.get('transaction_id') ||
         params.get('hottok') || params.get('hotmart_transaction') || '';
+      var eventId = 'mmd_purchase_' + (transactionId || (Date.now() + '_' + Math.random().toString(36).slice(2)));
       var dedupKey = 'mmd_purchase_' + (transactionId || 'session');
+
       var store = null;
       try { store = window.sessionStorage; } catch(e) {}
       if (store && store.getItem(dedupKey)) return;
       if (store) store.setItem(dedupKey, '1');
-      fbq('track','Purchase',{
+
+      var purchaseData = {
         value: 27,
         currency: 'BRL',
         content_name: 'metodo_mente_desligada',
         content_ids: ['metodo_mente_desligada'],
-        contents: [{id:'metodo_mente_desligada', quantity:1, item_price:27}],
+        contents: [{id: 'metodo_mente_desligada', quantity: 1, item_price: 27}],
         num_items: 1
-      });
+      };
+
+      // Browser pixel (deduplicação)
+      fbq('track', 'Purchase', purchaseData, {eventID: eventId});
+
+      // CAPI server-side
+      function getCookie(name) {
+        var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return m ? m.pop() : null;
+      }
+      var fbclid = params.get('fbclid');
+      fetch('/api/capi', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          data: [{
+            event_name: 'Purchase',
+            event_time: Math.floor(Date.now() / 1000),
+            event_id: eventId,
+            event_source_url: window.location.href,
+            action_source: 'website',
+            user_data: {
+              client_user_agent: navigator.userAgent,
+              fbp: getCookie('_fbp'),
+              fbc: getCookie('_fbc') || (fbclid ? 'fb.1.' + Date.now() + '.' + fbclid : null)
+            },
+            custom_data: purchaseData
+          }]
+        })
+      }).catch(function(){});
     })();
   </script>
   <!-- End Meta Pixel -->
