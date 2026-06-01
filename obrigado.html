@@ -69,6 +69,28 @@
     })();
   </script>
   <!-- End Meta Pixel -->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16892178342"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-16892178342');
+
+    // Evento de conversão de compra
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var transactionId = params.get('transaction') || params.get('transaction_id') ||
+        params.get('hottok') || params.get('hotmart_transaction') || '';
+      gtag('event', 'conversion', {
+        'send_to': 'AW-16892178342/JqKlCLPJlLccEKbf6PY-',
+        'value': 19.90,
+        'currency': 'BRL',
+        'transaction_id': transactionId
+      });
+    })();
+  </script>
+  <!-- End Google tag -->
   <style>
     :root {
       --night: #07111F;
