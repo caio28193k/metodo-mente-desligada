@@ -22,11 +22,12 @@
     type="image/webp">
   <title>Método Mente Desligada | Protocolo Fecha-Abas</title>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203982116"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7P5960J1F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('config', 'G-J7P5960J1F');
     gtag('config', 'AW-18203982116');
   </script>
   <script>
@@ -1239,7 +1240,7 @@
     <section class="section hero" aria-labelledby="hero-title">
       <div class="section-inner hero-grid">
         <!-- TIER 1: hero -->
-        <div class="hero-copy reveal">
+        <div class="hero-copy">
           <p class="eyebrow">Pra cabeça que não desliga</p>
           <h1 id="hero-title">Você não tem insônia. Tem uma cabeça que ninguém ensinou a desligar.</h1>
           <p class="lead">7 noites pra parar de olhar o teto. Sem chá, sem app, sem "tenta dormir mais cedo".</p>
@@ -1259,7 +1260,7 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-label="Imagem noturna calma com materiais do ritual">
+        <div class="hero-visual" aria-label="Imagem noturna calma com materiais do ritual">
           <picture>
             <source type="image/webp" srcset="assets/mente-desligada/hero-night-ritual-640.webp 640w, assets/mente-desligada/hero-night-ritual-1024.webp 1024w" sizes="(max-width: 719px) 100vw, 36vw">
             <img src="assets/mente-desligada/hero-night-ritual.jpg" width="1024" height="1024" alt="Cena noturna calma com diário, fones e luz suave para representar um ritual antes de dormir" fetchpriority="high" decoding="async">
@@ -1517,11 +1518,24 @@
     document.querySelectorAll('a[href*="hotmart.com"]').forEach(function(btn) {
       btn.addEventListener("click", function() {
         if (typeof fbq === "function") fbq("track", "InitiateCheckout");
-        if (typeof gtag === "function") gtag('event', 'conversion', {
-          'send_to': 'AW-18203982116/ZHN9COmewbccEKTyquhD',
-          'value': 1.0,
-          'currency': 'BRL'
-        });
+        if (typeof gtag === "function") {
+          gtag('event', 'begin_checkout', {
+            'send_to': 'G-J7P5960J1F',
+            'currency': 'BRL',
+            'value': 19.00,
+            'items': [{
+              'item_id': 'metodo_mente_desligada',
+              'item_name': 'Metodo Mente Desligada',
+              'price': 19.00,
+              'quantity': 1
+            }]
+          });
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18203982116/ZHN9COmewbccEKTyquhD',
+            'value': 1.0,
+            'currency': 'BRL'
+          });
+        }
       });
     });
 

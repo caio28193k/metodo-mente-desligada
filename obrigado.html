@@ -70,11 +70,12 @@
   </script>
   <!-- End Meta Pixel -->
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18203982116"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7P5960J1F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('config', 'G-J7P5960J1F');
     gtag('config', 'AW-18203982116');
 
     // Evento de conversão de compra
@@ -82,6 +83,19 @@
       var params = new URLSearchParams(window.location.search);
       var transactionId = params.get('transaction') || params.get('transaction_id') ||
         params.get('hottok') || params.get('hotmart_transaction') || '';
+      var purchaseEvent = {
+        'send_to': 'G-J7P5960J1F',
+        'currency': 'BRL',
+        'value': 19.90,
+        'items': [{
+          'item_id': 'metodo_mente_desligada',
+          'item_name': 'Metodo Mente Desligada',
+          'price': 19.90,
+          'quantity': 1
+        }]
+      };
+      if (transactionId) purchaseEvent.transaction_id = transactionId;
+      gtag('event', 'purchase', purchaseEvent);
       gtag('event', 'conversion', {
         'send_to': 'AW-18203982116/hYaSCKGBrLccEKTyquhD',
         'transaction_id': transactionId
