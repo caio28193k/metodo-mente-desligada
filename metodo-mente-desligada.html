@@ -19,6 +19,7 @@
     href="assets/mente-desligada/hero-night-ritual-640.webp"
     imagesrcset="assets/mente-desligada/hero-night-ritual-640.webp 640w, assets/mente-desligada/hero-night-ritual-1024.webp 1024w"
     imagesizes="(max-width: 719px) 100vw, 36vw"
+    fetchpriority="high"
     type="image/webp">
   <title>Método Mente Desligada | Protocolo Fecha-Abas</title>
   <!-- Google tag (gtag.js) -->
@@ -920,6 +921,10 @@
         box-shadow: none;
       }
 
+      .hero-visual::before {
+        display: none;
+      }
+
       .hero-visual picture,
       .hero-visual img {
         position: absolute;
@@ -1263,7 +1268,7 @@
         <div class="hero-visual" aria-label="Imagem noturna calma com materiais do ritual">
           <picture>
             <source type="image/webp" srcset="assets/mente-desligada/hero-night-ritual-640.webp 640w, assets/mente-desligada/hero-night-ritual-1024.webp 1024w" sizes="(max-width: 719px) 100vw, 36vw">
-            <img src="assets/mente-desligada/hero-night-ritual.jpg" width="1024" height="1024" alt="Cena noturna calma com diário, fones e luz suave para representar um ritual antes de dormir" fetchpriority="high" decoding="async">
+            <img src="assets/mente-desligada/hero-night-ritual.jpg" width="1024" height="1024" alt="Cena noturna calma com diário, fones e luz suave para representar um ritual antes de dormir" fetchpriority="high" decoding="sync">
           </picture>
           <div class="hero-visual-overlay"></div>
           <div class="product-card" aria-label="Mockup do Método Mente Desligada">
@@ -1557,23 +1562,46 @@
     const stickyCta = document.getElementById('stickyCta');
     const heroSection = document.querySelector('.hero');
     const offerSection = document.getElementById('oferta');
-    function updateStickyCta() {
-      if (!stickyCta || !heroSection || !offerSection) return;
-      const heroBottom = heroSection.getBoundingClientRect().bottom;
-      const offerTop = offerSection.getBoundingClientRect().top;
-      const offerBottom = offerSection.getBoundingClientRect().bottom;
-      const viewportHeight = window.innerHeight;
-      // Mostra quando passou do hero E a oferta ainda não está visível
-      const pastHero = heroBottom < 0;
-      const offerNotVisible = offerTop > viewportHeight * 0.6 || offerBottom < 0;
-      const shouldShow = pastHero && offerNotVisible;
+    let heroPassed = false;
+    let offerInFocus = false;
+
+    function setStickyCtaVisibility() {
+      if (!stickyCta) return;
+      const shouldShow = heroPassed && !offerInFocus;
       stickyCta.classList.toggle('is-visible', shouldShow);
       document.body.classList.toggle('has-sticky-cta', shouldShow);
       stickyCta.setAttribute('aria-hidden', String(!shouldShow));
     }
-    window.addEventListener('scroll', updateStickyCta, { passive: true });
-    window.addEventListener('resize', updateStickyCta, { passive: true });
-    updateStickyCta();
+
+    if (stickyCta && heroSection && offerSection && "IntersectionObserver" in window) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        heroPassed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        setStickyCtaVisibility();
+      }, { threshold: 0 });
+
+      const offerObserver = new IntersectionObserver((entries) => {
+        offerInFocus = entries[0].isIntersecting;
+        setStickyCtaVisibility();
+      }, { rootMargin: "0px 0px -40% 0px", threshold: 0 });
+
+      heroObserver.observe(heroSection);
+      offerObserver.observe(offerSection);
+      setStickyCtaVisibility();
+    } else if (stickyCta && heroSection && offerSection) {
+      function updateStickyCtaFallback() {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const offerTop = offerSection.getBoundingClientRect().top;
+        const offerBottom = offerSection.getBoundingClientRect().bottom;
+        const viewportHeight = window.innerHeight;
+        heroPassed = heroBottom < 0;
+        offerInFocus = offerTop <= viewportHeight * 0.6 && offerBottom >= 0;
+        setStickyCtaVisibility();
+      }
+      window.addEventListener('scroll', updateStickyCtaFallback, { passive: true });
+      window.addEventListener('resize', updateStickyCtaFallback, { passive: true });
+      updateStickyCtaFallback();
+    }
 
     const revealItems = document.querySelectorAll(".reveal");
 
