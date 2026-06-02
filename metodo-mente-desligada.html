@@ -23,13 +23,20 @@
     type="image/webp">
   <title>Método Mente Desligada | Protocolo Fecha-Abas</title>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7P5960J1F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-J7P5960J1F');
     gtag('config', 'AW-18203982116');
+    window.__loadGoogleTag = function(){
+      if (window.__googleTagLoaded) return;
+      window.__googleTagLoaded = true;
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-J7P5960J1F';
+      document.head.appendChild(script);
+    };
   </script>
   <script>
     document.documentElement.classList.add("js");
@@ -1230,12 +1237,33 @@
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];f.__loadMetaPixel=function(){
+    if(f.__metaPixelLoaded)return;f.__metaPixelLoaded=!0;t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}}(window,
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','1501804971693052');
     fbq('track','PageView');
     fbq('track','ViewContent',{content_name:'metodo_mente_desligada',content_category:'produto_principal',value:19.00,currency:'BRL'});
+    (function(){
+      var loaded = false;
+      function loadAnalytics(){
+        if (loaded) return;
+        loaded = true;
+        if (window.__loadGoogleTag) window.__loadGoogleTag();
+        if (window.__loadMetaPixel) window.__loadMetaPixel();
+      }
+      function scheduleAnalytics(){
+        window.setTimeout(loadAnalytics, 1200);
+      }
+      if (document.readyState === 'complete') {
+        scheduleAnalytics();
+      } else {
+        window.addEventListener('load', scheduleAnalytics, { once: true });
+      }
+      ['pointerdown','keydown','touchstart'].forEach(function(eventName){
+        window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+      });
+    })();
   </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1501804971693052&ev=PageView&noscript=1"/></noscript>
   <!-- End Meta Pixel -->
