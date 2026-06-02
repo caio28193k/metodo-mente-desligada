@@ -1573,5 +1573,19 @@
       revealItems.forEach((item) => item.classList.add("is-visible"));
     }
   </script>
+  <script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var source = params.get('utm_source');
+  var src = source ? source : 'direto';
+  var botoes = document.querySelectorAll('a[href*="pay.hotmart.com"]');
+  botoes.forEach(function (botao) {
+    var url = botao.getAttribute('href');
+    if (url.indexOf('src=') === -1) {
+      botao.setAttribute('href', url + '&src=' + src);
+    }
+  });
+})();
+</script>
 </body>
 </html>
