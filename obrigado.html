@@ -78,7 +78,7 @@
     gtag('config', 'G-J7P5960J1F');
     gtag('config', 'AW-18203982116');
 
-    // Evento de conversão de compra
+    // Evento de compra no GA4
     (function(){
       var params = new URLSearchParams(window.location.search);
       var transactionId = params.get('transaction') || params.get('transaction_id') ||
@@ -96,10 +96,6 @@
       };
       if (transactionId) purchaseEvent.transaction_id = transactionId;
       gtag('event', 'purchase', purchaseEvent);
-      gtag('event', 'conversion', {
-        'send_to': 'AW-18203982116/hYaSCKGBrLccEKTyquhD',
-        'transaction_id': transactionId
-      });
     })();
   </script>
   <!-- End Google tag -->
