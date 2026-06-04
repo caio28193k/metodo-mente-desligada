@@ -15,6 +15,66 @@
   <link rel="icon" href="data:,">
   <meta name="facebook-domain-verification" content="b2rbdeapmu9sz98lvopb3gyiqjb7tm" />
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1501804971693052');
+    fbq('track','PageView');
+    fbq('track','ViewContent',{content_name:'metodo_mente_desligada',content_category:'produto_principal',value:19.00,currency:'BRL'});
+    (function(){
+      var initiateCheckoutTracked = false;
+      function hotmartLinkFrom(target) {
+        while (target && target !== document) {
+          if (target.matches && target.matches('a[href*="hotmart.com"]')) return target;
+          target = target.parentNode;
+        }
+        return null;
+      }
+      document.addEventListener('click', function(event) {
+        var link = hotmartLinkFrom(event.target);
+        if (!link || initiateCheckoutTracked) return;
+        initiateCheckoutTracked = true;
+        if (typeof fbq === 'function') {
+          fbq('track','InitiateCheckout',{
+            content_name: 'metodo_mente_desligada',
+            content_ids: ['metodo_mente_desligada'],
+            contents: [{id: 'metodo_mente_desligada', quantity: 1, item_price: 19.00}],
+            value: 19.00,
+            currency: 'BRL',
+            num_items: 1
+          });
+        }
+      }, true);
+    })();
+    (function(){
+      var loaded = false;
+      function loadAnalytics(){
+        if (loaded) return;
+        loaded = true;
+        if (window.__loadGoogleTag) window.__loadGoogleTag();
+      }
+      function scheduleAnalytics(){
+        window.setTimeout(loadAnalytics, 1200);
+      }
+      if (document.readyState === 'complete') {
+        scheduleAnalytics();
+      } else {
+        window.addEventListener('load', scheduleAnalytics, { once: true });
+      }
+      ['pointerdown','keydown','touchstart'].forEach(function(eventName){
+        window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
+      });
+    })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1501804971693052&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
   <link rel="preload" as="image"
     href="assets/mente-desligada/hero-night-ritual-640.webp"
     imagesrcset="assets/mente-desligada/hero-night-ritual-640.webp 640w, assets/mente-desligada/hero-night-ritual-1024.webp 1024w"
@@ -1233,40 +1293,6 @@
       body.has-sticky-cta { padding-bottom: 80px; }
     }
   </style>
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];f.__loadMetaPixel=function(){
-    if(f.__metaPixelLoaded)return;f.__metaPixelLoaded=!0;t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1501804971693052');
-    fbq('track','PageView');
-    fbq('track','ViewContent',{content_name:'metodo_mente_desligada',content_category:'produto_principal',value:19.00,currency:'BRL'});
-    (function(){
-      var loaded = false;
-      function loadAnalytics(){
-        if (loaded) return;
-        loaded = true;
-        if (window.__loadGoogleTag) window.__loadGoogleTag();
-        if (window.__loadMetaPixel) window.__loadMetaPixel();
-      }
-      function scheduleAnalytics(){
-        window.setTimeout(loadAnalytics, 1200);
-      }
-      if (document.readyState === 'complete') {
-        scheduleAnalytics();
-      } else {
-        window.addEventListener('load', scheduleAnalytics, { once: true });
-      }
-      ['pointerdown','keydown','touchstart'].forEach(function(eventName){
-        window.addEventListener(eventName, loadAnalytics, { once: true, passive: true });
-      });
-    })();
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1501804971693052&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel -->
 </head>
 <body>
   <main class="page">
@@ -1337,7 +1363,7 @@
           <p>Cachorro gira 3 vezes antes de deitar. Pássaro arruma cada pena. Criança tem banho, história, beijo, escuro. Eles sabem que o dia acabou porque o corpo recebeu o sinal. O adulto moderno fecha o notebook às 23h59 e tenta apagar às 00h01 — e ainda fica bravo com o cérebro por não cooperar. O sinal nunca foi mandado. Como ele ia obedecer uma ordem que ninguém deu?</p>
           <p>Passei 2 anos assim. Terça, 23h, mandíbula travada no travesseiro, calculando se ainda dava pra dormir 5 horas. Já tinha tentado tudo que tem no Google: chá, melatonina, app de meditação, dormir mais cedo, contar carneirinho, parar de mexer no celular. Nada resolvia. Porque nada disso ataca o problema real.</p>
           <p>Bluma Zeigarnik provou em 1927: tarefa não encerrada ocupa memória até ser fechada. Toda noite que você deita sem fechar o dia, o cérebro fica com 47 abas abertas. E você quer que ele desligue? Não desliga. Não pode. Não foi feito pra isso.</p>
-          <p>Bruno Mendes, ex-insone crônico e pesquisador de hábitos noturnos. Testei o protocolo em mais de 150 pessoas antes de soltar.</p>
+          <p>Sou o Bruno — ex-insone crônico, vivi cada uma dessas noites. Testei o protocolo em mais de 150 pessoas antes de soltar.</p>
           <h3 class="mechanism-title">Protocolo Fecha-Abas</h3>
           <div class="flow-line" aria-hidden="true">Inventário Cru <span>→</span> Freio 4-6 <span>→</span> Ordem Final</div>
         </div>
@@ -1428,7 +1454,7 @@
           </div>
 
           <div class="practice-proof">
-            <p>R$19. Menos que um delivery que você nem ia gostar. Menos que uma cerveja num bar que você nem ia querer ir. Menos que UMA noite acordado custa em produtividade no dia seguinte. Consulta com especialista do sono passa de R$300. App de sono cobra mensalidade. Isso aqui: R$19 uma vez. Seu pra sempre.</p>
+            <p>R$19. Menos que um delivery. Menos que uma cerveja. Menos do que UMA noite acordado te custa de produtividade amanhã. Consulta com especialista do sono passa de R$300. App de sono cobra todo mês. Isso aqui: R$19 uma vez. Seu pra sempre.</p>
             
             <!-- TIER 1: stack de valor -->
             <div class="value-stack">
@@ -1550,7 +1576,6 @@
   <script>
     document.querySelectorAll('a[href*="hotmart.com"]').forEach(function(btn) {
       btn.addEventListener("click", function() {
-        if (typeof fbq === "function") fbq("track", "InitiateCheckout");
         if (typeof gtag === "function") {
           gtag('event', 'begin_checkout', {
             'send_to': 'G-J7P5960J1F',
@@ -1651,14 +1676,83 @@
   <script>
 (function () {
   var params = new URLSearchParams(window.location.search);
-  var source = params.get('utm_source');
-  var src = source ? source : 'direto';
+  var source = params.get('utm_source') || (params.get('fbclid') ? 'meta' : 'direto');
+  function getCookie(name) {
+    var match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return match ? decodeURIComponent(match.pop()) : '';
+  }
+  function setCookie(name, value) {
+    var secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=7776000; SameSite=Lax' + secure;
+  }
+  function buildFbp() {
+    var existingFbp = getCookie('_fbp');
+    if (existingFbp) return existingFbp;
+    var generatedFbp = 'fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 1000000000000000000);
+    setCookie('_fbp', generatedFbp);
+    return generatedFbp;
+  }
+  function buildFbc() {
+    var existingFbc = getCookie('_fbc');
+    var fbclid = params.get('fbclid');
+    if (existingFbc) return existingFbc;
+    if (!fbclid) return '';
+    var generatedFbc = 'fb.1.' + Date.now() + '.' + fbclid;
+    setCookie('_fbc', generatedFbc);
+    return generatedFbc;
+  }
+  var fbp = buildFbp();
+  var fbc = buildFbc();
+  var trackingParams = [
+    'utm_source',
+    'utm_medium',
+    'utm_campaign',
+    'utm_content',
+    'utm_term',
+    'utm_id',
+    'fbclid',
+    'gclid',
+    'gbraid',
+    'wbraid'
+  ];
   var botoes = document.querySelectorAll('a[href*="pay.hotmart.com"]');
   botoes.forEach(function (botao) {
-    var url = botao.getAttribute('href');
-    if (url.indexOf('src=') === -1) {
-      botao.setAttribute('href', url + '&src=' + src);
+    var checkoutUrl = new URL(botao.getAttribute('href'), window.location.href);
+    if (!checkoutUrl.searchParams.has('src')) {
+      checkoutUrl.searchParams.set('src', source);
     }
+    trackingParams.forEach(function (key) {
+      var value = params.get(key);
+      if (value && !checkoutUrl.searchParams.has(key)) {
+        checkoutUrl.searchParams.set(key, value);
+      }
+    });
+    if (fbp && !checkoutUrl.searchParams.has('fbp')) {
+      checkoutUrl.searchParams.set('fbp', fbp);
+    }
+    if (fbc && !checkoutUrl.searchParams.has('fbc')) {
+      checkoutUrl.searchParams.set('fbc', fbc);
+    }
+    if (!checkoutUrl.searchParams.has('xcod')) {
+      var xcod = [
+        'fbp=' + fbp,
+        'fbc=' + fbc,
+        'fbclid=' + (params.get('fbclid') || '')
+      ].filter(function (item) {
+        return item.split('=')[1];
+      }).join('|');
+      if (xcod) checkoutUrl.searchParams.set('xcod', xcod);
+    }
+    if (!checkoutUrl.searchParams.has('sck')) {
+      var sck = [
+        params.get('utm_source') || '',
+        params.get('utm_campaign') || '',
+        params.get('utm_content') || '',
+        params.get('fbclid') || ''
+      ].filter(Boolean).join('|');
+      if (sck) checkoutUrl.searchParams.set('sck', sck.slice(0, 255));
+    }
+    botao.setAttribute('href', checkoutUrl.toString());
   });
 })();
 </script>
