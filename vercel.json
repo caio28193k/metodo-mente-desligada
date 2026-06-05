@@ -7,6 +7,10 @@
     {
       "source": "/obrigado",
       "destination": "/obrigado.html"
+    },
+    {
+      "source": "/programa-21-noites",
+      "destination": "/programa-21-noites.html"
     }
   ],
   "headers": [
