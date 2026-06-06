@@ -2,9 +2,10 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Método Mente Desligada: ritual noturno de 7 noites para fechar pendências mentais antes de dormir.">
   <meta name="theme-color" content="#07111F">
+  <meta name="format-detection" content="telephone=no">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://metodomentedesligada.com/">
@@ -15,6 +16,8 @@
   <link rel="icon" href="data:,">
   <meta name="facebook-domain-verification" content="b2rbdeapmu9sz98lvopb3gyiqjb7tm" />
   <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+  <link rel="preconnect" href="https://pay.hotmart.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <!-- Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -73,7 +76,7 @@
       });
     })();
   </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1501804971693052&ev=PageView&noscript=1"/></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1501804971693052&ev=PageView&noscript=1" alt=""/></noscript>
   <!-- End Meta Pixel -->
   <link rel="preload" as="image"
     href="assets/mente-desligada/hero-night-ritual-640.webp"
@@ -81,7 +84,7 @@
     imagesizes="(max-width: 719px) 100vw, 36vw"
     fetchpriority="high"
     type="image/webp">
-  <title>Método Mente Desligada | Protocolo Fecha-Abas</title>
+  <title>Sua mente acelera quando a luz apaga? | Método Mente Desligada</title>
   <!-- Google tag (gtag.js) -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -113,58 +116,51 @@
       --mint: #7CFFCB;
       --cta-text: #07111F;
       --alert: #E9A6A6;
+      --warm: #FFB84D;
       --border: #2A3B55;
       --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
-      --radius: 8px;
+      --radius: 12px;
       --radius-lg: 18px;
-      --max: 1120px;
+      --max: 720px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    *,*::before,*::after { box-sizing: border-box; margin:0; padding:0; -webkit-tap-highlight-color: transparent; }
 
     html {
       scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     body {
-      margin: 0;
       min-width: 320px;
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 16px;
       background:
         radial-gradient(circle at 82% 6%, rgba(185, 167, 255, 0.18), transparent 34rem),
         radial-gradient(circle at 10% 20%, rgba(169, 214, 229, 0.12), transparent 24rem),
         linear-gradient(150deg, var(--night) 0%, var(--purple) 54%, #081326 100%);
       line-height: 1.5;
       letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      min-height: 100vh;
+      min-height: 100dvh;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; touch-action: manipulation; }
+    button { font: inherit; touch-action: manipulation; }
 
-    a {
-      color: inherit;
-    }
-
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .page {
-      position: relative;
-      overflow: hidden;
-    }
+    .page { position: relative; overflow: hidden; }
 
     .page::before {
       content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
+      position: fixed; inset: 0; z-index: -2;
       background-image:
         linear-gradient(rgba(247, 243, 234, 0.035) 1px, transparent 1px),
         linear-gradient(90deg, rgba(247, 243, 234, 0.03) 1px, transparent 1px);
@@ -175,1405 +171,986 @@
 
     .page::after {
       content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
+      position: fixed; inset: 0; z-index: -1;
       background: linear-gradient(to bottom, rgba(7, 17, 31, 0) 0%, rgba(7, 17, 31, 0.72) 76%, #07111F 100%);
       pointer-events: none;
     }
 
-    .section {
-      padding: 44px 18px;
-      position: relative;
+    /* TOPBAR — gatilho de identificação */
+    .topbar {
+      background: linear-gradient(90deg, rgba(124, 255, 203, 0.12), rgba(185, 167, 255, 0.12));
+      border-bottom: 1px solid rgba(124, 255, 203, 0.2);
+      color: var(--mint);
+      text-align: center;
+      padding: calc(10px + var(--safe-top)) 14px 10px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
     }
 
-    .section-inner {
-      width: min(100%, var(--max));
-      margin: 0 auto;
+    .topbar .pulse {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--mint); margin-right: 8px; vertical-align: middle;
+      box-shadow: 0 0 12px var(--mint);
+      animation: pulse 2.4s ease-in-out infinite;
     }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .section { padding: 36px 18px; position: relative; }
+    .section-inner { width: min(100%, var(--max)); margin: 0 auto; }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
+      display: inline-flex; align-items: center; gap: 9px;
       margin: 0 0 12px;
       color: var(--breath);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
     }
-
     .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
+      content: ""; width: 7px; height: 7px; border-radius: 999px;
       background: var(--mint);
-      box-shadow: 0 0 20px rgba(124, 255, 203, 0.7);
+      box-shadow: 0 0 14px rgba(124, 255, 203, 0.7);
     }
 
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
+    h1,h2,h3,p { margin-top: 0; }
 
     h1 {
       margin-bottom: 14px;
       max-width: 720px;
-      font-size: clamp(2.04rem, 10vw, 5.8rem);
-      line-height: 0.95;
-      letter-spacing: 0;
+      font-size: clamp(1.85rem, 7.5vw, 3.4rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
+    h1 .hl { color: var(--mint); }
 
     h2 {
       margin-bottom: 14px;
-      max-width: 810px;
-      font-size: clamp(1.65rem, 6.5vw, 4rem);
-      line-height: 1.02;
-      letter-spacing: 0;
+      max-width: 720px;
+      font-size: clamp(1.4rem, 5.5vw, 2.4rem);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.01em;
     }
+    h2 .hl { color: var(--lavender); }
 
     h3 {
       margin-bottom: 10px;
-      font-size: 1.15rem;
-      line-height: 1.2;
-      letter-spacing: 0;
+      font-size: 1.1rem;
+      line-height: 1.25;
+      font-weight: 800;
     }
 
-    p {
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
+    p { color: var(--muted); font-size: 0.98rem; line-height: 1.55; }
+    p strong { color: var(--text); font-weight: 700; }
+    p .mint { color: var(--mint); font-weight: 700; }
+    p .warn { color: var(--warm); font-weight: 700; }
+    p .stat { color: var(--warm); font-weight: 800; }
 
     .lead {
       max-width: 600px;
       color: #DEE5F2;
-      font-size: clamp(1rem, 3.5vw, 1.22rem);
+      font-size: clamp(1rem, 3.4vw, 1.18rem);
       line-height: 1.45;
+      margin-bottom: 16px;
     }
 
-    .microcopy {
-      margin: 0;
-      color: var(--breath);
-      font-weight: 700;
-    }
+    .lead strong { color: var(--text); font-weight: 700; }
 
+    /* CTA primário */
     .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 24px;
-      border: 1px solid rgba(124, 255, 203, 0.58);
-      border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 56px;
+      padding: 16px 24px;
+      width: 100%;
+      border: none;
+      border-radius: 14px;
       color: var(--cta-text);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 42%),
-        var(--mint);
-      box-shadow: 0 14px 42px rgba(124, 255, 203, 0.23), inset 0 -2px 0 rgba(7, 17, 31, 0.18);
-      font-size: 1rem;
-      font-weight: 900;
-      text-align: center;
+      background: var(--mint);
+      box-shadow: 0 12px 32px rgba(124, 255, 203, 0.28);
+      font-size: 1.04rem; font-weight: 900;
+      letter-spacing: -0.01em; text-align: center;
       text-decoration: none;
-      transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+      cursor: pointer;
     }
-
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 56px rgba(124, 255, 203, 0.33), inset 0 -2px 0 rgba(7, 17, 31, 0.18);
-      filter: saturate(1.06);
+    .cta:active { transform: translateY(1px); }
+    .cta .small {
+      display: block; font-size: 0.78rem; font-weight: 600;
+      opacity: 0.75; margin-top: 4px; letter-spacing: 0;
     }
+    .cta:focus-visible { outline: 3px solid var(--lavender); outline-offset: 3px; }
 
-    .cta:focus-visible,
-    .faq-trigger:focus-visible {
-      outline: 3px solid rgba(169, 214, 229, 0.78);
-      outline-offset: 4px;
-    }
+    /* HERO */
+    .hero { padding: 26px 18px 30px; position: relative; }
+    .hero-grid { display: block; }
 
-    .hero {
-      padding-top: 28px;
-      padding-bottom: 34px;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-grid {
-      display: grid;
-      gap: 26px;
-      align-items: center;
-    }
-
-    .hero-copy {
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-actions {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .trust-row li {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 7px 10px;
-      border: 1px solid rgba(42, 59, 85, 0.86);
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 800;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--mint);
+      padding: 5px 12px;
+      border: 1px solid rgba(124, 255, 203, 0.3);
       border-radius: 999px;
-      color: #DDE6F7;
-      background: rgba(16, 27, 46, 0.7);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-      font-size: 0.78rem;
-      font-weight: 800;
+      margin-bottom: 18px;
     }
 
     .hero-visual {
       position: relative;
-      min-height: 330px;
-      border: 1px solid rgba(185, 167, 255, 0.2);
-      border-radius: 12px;
-      background: rgba(16, 27, 46, 0.44);
-      box-shadow: var(--shadow);
+      min-height: 220px;
+      border-radius: 14px;
       overflow: hidden;
+      margin-bottom: 22px;
       isolation: isolate;
     }
-
     .hero-visual::before {
       content: "";
-      position: absolute;
-      inset: -1px;
-      z-index: -1;
-      background: linear-gradient(145deg, rgba(185, 167, 255, 0.45), rgba(124, 255, 203, 0.14), rgba(169, 214, 229, 0.16));
-      filter: blur(18px);
-      opacity: 0.55;
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(7,17,31,0) 30%, rgba(7,17,31,0.85) 100%);
     }
-
-    .hero-visual picture {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
     .hero-visual img {
-      width: 100%;
-      height: 100%;
-      min-height: 330px;
-      object-fit: cover;
-      opacity: 0.88;
-      transform: scale(1.02);
+      width: 100%; height: 100%; min-height: 220px;
+      object-fit: cover; object-position: 48% 22%;
+      opacity: 0.72;
     }
 
-    .hero-visual-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 48% 36%, rgba(185, 167, 255, 0.13), transparent 24rem),
-        linear-gradient(to top, rgba(7, 17, 31, 0.86), rgba(7, 17, 31, 0.18) 58%, rgba(7, 17, 31, 0.2));
-      pointer-events: none;
+    .trust-row {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin: 14px 0 0; padding: 0; list-style: none;
     }
-
-    .product-card {
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-      left: 18px;
-      padding: 16px;
-      border: 1px solid rgba(185, 167, 255, 0.32);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(160deg, rgba(16, 27, 46, 0.92), rgba(21, 16, 38, 0.9)),
-        rgba(16, 27, 46, 0.9);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36), 0 0 46px rgba(185, 167, 255, 0.13);
-    }
-
-    .mobile-product-card {
-      display: none;
-    }
-
-    .moon-mark {
-      width: 46px;
-      height: 46px;
-      margin-bottom: 10px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 62% 35%, var(--night) 0 31%, transparent 32%),
-        linear-gradient(135deg, var(--lavender), var(--breath));
-      box-shadow: 0 0 38px rgba(185, 167, 255, 0.46);
-    }
-
-    .product-card strong {
-      display: block;
-      max-width: 270px;
-      color: var(--text);
-      font-size: 1.22rem;
-      line-height: 1.02;
-    }
-
-    .product-card span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.86rem;
-    }
-
-    .pain {
-      background:
-        linear-gradient(180deg, rgba(7, 17, 31, 0.1), rgba(16, 27, 46, 0.42)),
-        radial-gradient(circle at 86% 22%, rgba(233, 166, 166, 0.12), transparent 24rem);
-    }
-
-    .pain-grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .pain-copy {
-      max-width: 760px;
-    }
-
-    .pain-copy p {
-      font-size: clamp(0.96rem, 3.7vw, 1.08rem);
-    }
-
-    .pain-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .pain-list li {
-      position: relative;
-      padding: 14px 14px 14px 44px;
-      border: 1px solid rgba(42, 59, 85, 0.78);
-      border-radius: var(--radius);
-      color: #E7ECF5;
-      background: rgba(16, 27, 46, 0.74);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.16);
-      font-weight: 750;
-    }
-
-    .pain-list li::before {
-      content: "";
-      position: absolute;
-      left: 17px;
-      top: 50%;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--alert);
-      box-shadow: 0 0 22px rgba(233, 166, 166, 0.42);
-      transform: translateY(-50%);
-    }
-
-    .section-close {
-      margin: 18px 0 0;
-      padding: 13px 15px;
-      border-left: 3px solid var(--breath);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      color: #EDF4FF;
-      background: rgba(169, 214, 229, 0.08);
-      font-weight: 800;
-    }
-
-    .mechanism {
-      background: linear-gradient(180deg, rgba(16, 27, 46, 0.14), rgba(7, 17, 31, 0.2));
-    }
-
-    .mechanism-copy {
-      max-width: 820px;
-    }
-
-    .mechanism-title {
-      margin: 24px 0 12px;
-      color: #FFFFFF;
-      font-size: clamp(1.45rem, 5vw, 2rem);
-    }
-
-    .layers {
-      display: grid;
-      gap: 10px;
-      margin: 0 0 16px;
-    }
-
-    .flow-line {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin: 0 0 18px;
-      color: var(--breath);
-      font-size: 0.9rem;
-      font-weight: 900;
-    }
-
-    .flow-line span {
-      color: var(--lavender);
-      font-weight: 700;
-    }
-
-    .layer-card {
-      position: relative;
-      padding: 18px;
-      border: 1px solid rgba(42, 59, 85, 0.82);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0)),
-        rgba(16, 27, 46, 0.82);
-      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-    }
-
-    .layer-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto 0 0;
-      width: 4px;
-      background: var(--accent);
-      box-shadow: 0 0 24px var(--accent);
-    }
-
-    .layer-card h3 {
-      color: var(--text);
-    }
-
-    .layer-card p {
-      margin-bottom: 0;
-    }
-
-    .offer {
-      background:
-        radial-gradient(circle at 15% 12%, rgba(124, 255, 203, 0.09), transparent 22rem),
-        linear-gradient(180deg, rgba(21, 16, 38, 0.3), rgba(16, 27, 46, 0.22));
-    }
-
-    .offer-head {
-      max-width: 770px;
-      margin-bottom: 18px;
-    }
-
-    .offer-box {
-      display: grid;
-      gap: 14px;
-    }
-
-    .offer-main {
-      padding: 16px;
-      border: 1px solid rgba(42, 59, 85, 0.86);
-      border-radius: var(--radius);
-      background: rgba(7, 17, 31, 0.34);
-    }
-
-    .offer-main h3 {
-      margin-bottom: 12px;
-      color: var(--mint);
-      font-size: clamp(1.2rem, 4.6vw, 1.8rem);
-    }
-
-    .check-list {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .check-list li {
-      position: relative;
-      padding-left: 28px;
-      color: #E7ECF5;
-      font-weight: 700;
-    }
-
-    .check-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.36em;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--mint);
-      box-shadow: 0 0 20px rgba(124, 255, 203, 0.38);
-    }
-
-    .bonus-box {
-      padding: 16px;
-      border: 1px solid rgba(169, 214, 229, 0.22);
-      border-radius: var(--radius);
-      background: rgba(169, 214, 229, 0.06);
-    }
-
-    .bonus-box h3 {
-      color: var(--breath);
-    }
-
-    .mini-note {
-      margin: 14px 0 0;
-      padding: 13px;
-      border: 1px solid rgba(185, 167, 255, 0.22);
-      border-radius: var(--radius);
-      color: var(--text);
-      background: rgba(185, 167, 255, 0.07);
-      font-weight: 850;
-    }
-
-    .practice-proof {
-      margin-top: 18px;
-      padding: 16px;
-      border: 1px solid rgba(42, 59, 85, 0.86);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0)),
-        rgba(16, 27, 46, 0.72);
-      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.18);
-    }
-
-    .practice-proof h3 {
-      margin-bottom: 8px;
-      color: var(--text);
-      font-size: clamp(1.22rem, 4.6vw, 1.8rem);
-    }
-
-    .practice-proof > p {
-      margin-bottom: 14px;
-    }
-
-    .practice-grid {
-      display: grid;
-      gap: 10px;
-    }
-
-    .practice-card {
-      padding: 14px;
-      border: 1px solid rgba(185, 167, 255, 0.2);
-      border-radius: var(--radius);
-      background: rgba(7, 17, 31, 0.3);
-    }
-
-    .practice-card h4 {
-      margin: 0 0 7px;
-      color: var(--breath);
-      font-size: 1rem;
-      line-height: 1.2;
-    }
-
-    .practice-card p {
-      margin: 0;
-      font-size: 0.9rem;
-      line-height: 1.45;
-    }
-
-    .practice-note {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 0.8rem;
-      line-height: 1.35;
-    }
-
-    .checkout {
-      padding-bottom: 84px;
-      background:
-        radial-gradient(circle at 78% 16%, rgba(185, 167, 255, 0.14), transparent 28rem),
-        linear-gradient(180deg, rgba(7, 17, 31, 0.18), rgba(7, 17, 31, 0.86));
-    }
-
-    .checkout-grid {
-      display: grid;
-      gap: 14px;
-    }
-
-    .price-card,
-    .faq-card {
-      border: 1px solid rgba(42, 59, 85, 0.92);
-      border-radius: var(--radius);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0)),
-        rgba(16, 27, 46, 0.88);
-      box-shadow: var(--shadow);
-    }
-
-    .price-card {
-      padding: 18px;
-    }
-
-    .price {
-      margin: 12px 0 8px;
-      color: var(--text);
-      font-size: clamp(2.15rem, 10vw, 4.1rem);
-      font-weight: 950;
-      line-height: 0.98;
-    }
-
-    .price span {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--muted);
-      font-size: 1rem;
-      font-weight: 750;
-      text-decoration: line-through;
-    }
-
-    .price-micro {
-      margin-bottom: 16px;
-      color: var(--breath);
-      font-weight: 850;
-    }
-
-    .guarantee {
-      margin: 16px 0 0;
-      padding: 13px;
-      border: 1px solid rgba(124, 255, 203, 0.22);
-      border-radius: var(--radius);
+    .trust-row li {
+      display: inline-flex; align-items: center;
+      padding: 6px 10px;
+      border: 1px solid rgba(124, 255, 203, 0.2);
+      border-radius: 999px;
       color: #DDE6F7;
-      background: rgba(124, 255, 203, 0.06);
+      background: rgba(124, 255, 203, 0.05);
+      font-size: 0.74rem; font-weight: 700;
+    }
+    .trust-row li::before {
+      content: "✓"; color: var(--mint); margin-right: 5px; font-weight: 900;
     }
 
-    .guarantee strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--mint);
-    }
-
-    .education-note {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.4;
-    }
-
-    .faq-card {
-      overflow: hidden;
-    }
-
-    .faq-header {
-      padding: 16px 18px 4px;
-    }
-
-    .faq-header h3 {
-      margin-bottom: 0;
-      font-size: 1.35rem;
-    }
-
-    .faq-item {
-      border-top: 1px solid rgba(42, 59, 85, 0.72);
-    }
-
-    .faq-trigger {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      width: 100%;
-      padding: 18px 0;
-      border: 0;
-      color: var(--text);
-      background: transparent;
-      font: inherit;
-      font-weight: 800;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .faq-icon {
-      flex: 0 0 24px;
-      width: 24px;
-      height: 24px;
-      border: 1px solid rgba(185, 167, 255, 0.34);
-      border-radius: 999px;
-      position: relative;
-    }
-
-    .faq-icon::before,
-    .faq-icon::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 10px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--lavender);
-      transform: translate(-50%, -50%);
-      transition: transform 180ms ease;
-    }
-
-    .faq-icon::after {
-      transform: translate(-50%, -50%) rotate(90deg);
-    }
-
-    .faq-trigger[aria-expanded="true"] .faq-icon::after {
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    .faq-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 220ms ease, padding-bottom 220ms ease;
-    }
-
-    .faq-trigger[aria-expanded="true"] + .faq-panel {
-      max-height: 500px;
-      padding-bottom: 18px;
-    }
-
-    .faq-panel > div {
-      overflow: hidden;
-    }
-
-    .faq-panel p {
-      margin: 0;
-      padding: 0;
-      color: var(--muted);
-    }
-
-    .final-cta {
-      width: 100%;
-      margin-top: 18px;
-    }
-
-    .sticky-cta {
-      position: fixed;
-      right: 12px;
-      bottom: 12px;
-      left: 12px;
-      z-index: 20;
-      display: none;
-      padding: 10px;
-      border: 1px solid rgba(42, 59, 85, 0.82);
-      border-radius: 999px;
-      background: rgba(7, 17, 31, 0.78);
-      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.42);
-      backdrop-filter: blur(18px);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(120%);
-      transition: opacity 200ms ease, transform 200ms ease;
-    }
-
-    .sticky-cta.is-visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-
-    .sticky-cta .cta {
-      width: 100%;
-      min-height: 52px;
-    }
-
-    .reveal {
-      opacity: 1;
-      transform: none;
-    }
-
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 620ms ease, transform 620ms ease;
-    }
-
-    .js .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (min-width: 720px) {
-      .section {
-        padding: 72px 28px;
-      }
-
-      .hero {
-        padding-top: 38px;
-        padding-bottom: 46px;
-        min-height: 74svh;
-      }
-
-      .hero-actions {
-        display: flex;
-        align-items: center;
-      }
-
-      .hero-grid {
-        grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.78fr);
-      }
-
-      .pain-grid {
-        grid-template-columns: minmax(0, 0.95fr) minmax(310px, 0.62fr);
-        align-items: start;
-      }
-
-      .layers {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .offer-box {
-        grid-template-columns: minmax(0, 1.1fr) minmax(310px, 0.72fr);
-      }
-
-      .practice-proof {
-        grid-column: 1 / -1;
-      }
-
-      .practice-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .checkout-grid {
-        grid-template-columns: minmax(340px, 0.82fr) minmax(0, 1fr);
-        align-items: start;
-      }
-
-    }
-
-    @media (min-width: 980px) {
-      .section {
-        padding: 84px 32px;
-      }
-
-      .hero {
-        padding-top: 42px;
-        padding-bottom: 52px;
-        min-height: 74svh;
-      }
-
-      .product-card {
-        right: 26px;
-        bottom: 26px;
-        left: auto;
-        width: min(335px, calc(100% - 52px));
-      }
-    }
-
-    @media (max-width: 719px) {
-      body {
-        padding-bottom: 86px;
-      }
-
-      .sticky-cta {
-        display: block;
-      }
-
-      .hero {
-        min-height: 710px;
-        overflow: hidden;
-      }
-
-      .hero-grid {
-        display: block;
-      }
-
-      .hero-visual {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        min-height: 100%;
-        border: 0;
-        border-radius: 0;
-        background: transparent;
-        box-shadow: none;
-      }
-
-      .hero-visual::before {
-        display: none;
-      }
-
-      .hero-visual picture,
-      .hero-visual img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        min-height: 100%;
-        object-position: 48% 22%;
-        opacity: 0.34;
-      }
-
-      .hero-visual-overlay {
-        background:
-          linear-gradient(180deg, rgba(7, 17, 31, 0.82), rgba(7, 17, 31, 0.5) 48%, rgba(7, 17, 31, 0.88) 100%),
-          radial-gradient(circle at 54% 58%, rgba(185, 167, 255, 0.14), transparent 18rem);
-      }
-
-      .product-card {
-        right: 18px;
-        bottom: 18px;
-        left: 18px;
-      }
-
-      .hero-visual .product-card {
-        display: none;
-      }
-
-      .mobile-product-card {
-        display: block;
-        position: relative;
-        right: auto;
-        bottom: auto;
-        left: auto;
-        margin-top: 22px;
-      }
-
-      .moon-mark {
-        display: none;
-      }
-
-      .cta {
-        width: 100%;
-      }
-
-      .pain {
-        padding-top: 38px;
-      }
-    }
-
-    @media (max-width: 390px) and (max-height: 740px) {
-      .hero {
-        min-height: 660px;
-      }
-
-      h1 {
-        font-size: 1.95rem;
-      }
-
-      .lead {
-        font-size: 0.94rem;
-      }
-
-      .trust-row li {
-        min-height: 30px;
-        padding: 7px 9px;
-        font-size: 0.75rem;
-      }
-
-      .product-card {
-        padding: 14px;
-      }
-
-      .moon-mark {
-        width: 38px;
-        height: 38px;
-      }
-
-      .product-card strong {
-        font-size: 1.16rem;
-      }
-
-      .product-card span {
-        font-size: 0.8rem;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    .testimonials-grid {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: 1fr;
-      margin-top: 24px;
-    }
-
-    .testimonial-card {
+    /* CHECKLIST DE SINTOMAS (NOVO BLOCO) */
+    .symptoms {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 22px;
-      position: relative;
+      padding: 22px 20px;
+      margin: 22px 0 0;
     }
-
-    .testimonial-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 4px;
-      background: var(--lavender);
-      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
-    }
-
-    .testimonial-quote {
-      font-size: 0.98rem;
-      line-height: 1.5;
-      margin-bottom: 12px;
+    .symptoms h3 {
       color: var(--text);
+      font-size: 1.05rem; line-height: 1.3;
+      margin-bottom: 14px;
     }
-
-    .testimonial-author {
-      font-size: 0.82rem;
-      color: var(--muted);
-      font-weight: 700;
-      margin: 0;
+    .symptoms h3 .warn { color: var(--warm); }
+    .symptom-list { list-style: none; padding: 0; margin: 0; }
+    .symptom-list li {
+      display: flex; align-items: flex-start; gap: 11px;
+      padding: 11px 0;
+      border-bottom: 1px dashed rgba(42, 59, 85, 0.5);
+      color: #E7ECF5;
+      font-size: 0.96rem; line-height: 1.4;
+      font-weight: 600;
     }
-
-    @media (min-width: 720px) {
-      .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .symptom-list li:last-child { border-bottom: none; }
+    .symptom-list .box {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 2px solid var(--alert);
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--alert); font-weight: 900; font-size: 0.85rem;
+      margin-top: 1px;
     }
-
-    .value-stack {
-      background: rgba(7, 17, 31, 0.5);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      margin: 24px 0;
-    }
-    .value-stack-title {
-      margin: 0 0 14px;
+    .symptoms-footer {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
       color: var(--breath);
-      font-size: 0.85rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .value-stack-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 14px;
-    }
-    .value-stack-list li {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(42, 59, 85, 0.5);
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-    .value-stack-list li:last-child { border-bottom: none; }
-    .value-amount {
-      color: var(--muted);
-      font-weight: 700;
-      text-decoration: line-through;
-      white-space: nowrap;
-    }
-    .value-stack-total, .value-stack-today {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 12px 0;
-      font-weight: 800;
-    }
-    .value-stack-total {
-      border-top: 2px solid var(--border);
-      color: var(--text);
-      font-size: 1.05rem;
-    }
-    .value-total-amount {
-      color: var(--muted);
-      text-decoration: line-through;
-    }
-    .value-stack-today {
-      color: var(--mint);
-      font-size: 1.35rem;
-    }
-    .value-today-amount {
-      color: var(--mint);
-      font-size: 1.8rem;
-    }
-    .value-stack-note {
-      margin: 8px 0 0;
-      color: var(--breath);
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       font-weight: 700;
       text-align: center;
     }
 
-    .double-guarantee {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin: 16px 0;
-    }
-    @media (min-width: 720px) {
-      .double-guarantee { grid-template-columns: 1fr 1fr; }
-    }
-    .guarantee-card {
-      background: rgba(124, 255, 203, 0.06);
-      border: 1px solid rgba(124, 255, 203, 0.3);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-    }
-    .guarantee-tag {
-      margin: 0 0 8px;
-      color: var(--mint);
-      font-size: 0.78rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .guarantee-card p:not(.guarantee-tag) {
-      margin: 0;
-      color: var(--text);
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-    .guarantee-card strong {
-      color: var(--mint);
+    /* PAIN (compacto) */
+    .pain { background: linear-gradient(180deg, rgba(233, 166, 166, 0.04), rgba(7, 17, 31, 0)); }
+    .pain h2 { margin-bottom: 16px; }
+    .pain-time {
+      display: inline-block;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      color: var(--alert);
+      font-weight: 800; font-size: 1.05rem;
+      padding: 3px 8px;
+      background: rgba(233, 166, 166, 0.1);
+      border-radius: 5px;
+      margin-right: 5px;
     }
 
-    .ps-block {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+    /* MECHANISM */
+    .mechanism { background: linear-gradient(180deg, rgba(16, 27, 46, 0.1), rgba(7, 17, 31, 0.2)); }
+    .author-box {
+      display: flex; align-items: center; gap: 13px;
+      background: rgba(185, 167, 255, 0.06);
+      border: 1px solid rgba(185, 167, 255, 0.2);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 0 0 22px;
     }
-    .ps-line {
-      margin: 0 0 12px;
+    .author-box .avatar {
+      flex-shrink: 0;
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--lavender), var(--breath));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--night); font-weight: 900; font-size: 1.1rem;
+    }
+    .author-box .text { font-size: 0.88rem; color: #DEE5F2; line-height: 1.45; }
+    .author-box .text strong { color: var(--lavender); font-weight: 800; }
+
+    .protocol-flow {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin: 18px 0;
+      color: var(--breath);
+      font-size: 0.9rem;
+      font-weight: 800;
+      flex-wrap: wrap;
+    }
+    .protocol-flow span { color: var(--lavender); font-weight: 700; }
+
+    .protocol-cards {
+      display: grid; gap: 10px; margin: 0 0 18px;
+      grid-template-columns: 1fr;
+    }
+    .protocol-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      overflow: hidden;
+    }
+    .protocol-card::before {
+      content: "";
+      position: absolute; inset: 0 auto 0 0;
+      width: 4px;
+      background: var(--accent);
+      box-shadow: 0 0 18px var(--accent);
+    }
+    .protocol-card h4 {
+      color: var(--text); font-size: 1.02rem;
+      margin: 0 0 4px;
+    }
+    .protocol-card .time {
+      display: inline-block;
+      color: var(--mint); font-size: 0.74rem;
+      font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .protocol-card p { font-size: 0.92rem; color: #C7D4E8; margin: 0; }
+
+    /* TESTIMONIAL (espalhado) */
+    .testimonial-inline {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--lavender);
+      border-radius: 12px;
+      padding: 18px 18px;
+      margin: 22px 0 4px;
+    }
+    .testimonial-inline .stars {
+      color: var(--warm);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .testimonial-inline .quote {
+      font-size: 0.96rem;
+      color: var(--text);
+      line-height: 1.5;
+      font-style: italic;
+      margin: 0 0 8px;
+    }
+    .testimonial-inline .quote::before { content: "\201C"; color: var(--lavender); font-weight: 900; margin-right: 2px; }
+    .testimonial-inline .quote::after { content: "\201D"; color: var(--lavender); font-weight: 900; margin-left: 2px; }
+    .testimonial-inline .author {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* SOLUTION / FUTURE PACING */
+    .future {
+      background: linear-gradient(135deg, rgba(124, 255, 203, 0.07), rgba(185, 167, 255, 0.07));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 20px;
+      margin: 16px 0 4px;
+    }
+    .future .f-label {
+      font-size: 0.74rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mint); margin-bottom: 12px;
+    }
+    .future p { font-size: 1rem; color: #D4DEEE; line-height: 1.55; font-style: italic; margin: 0; }
+    .future p strong { color: var(--text); font-style: normal; }
+
+    /* OFFER */
+    .offer { background: linear-gradient(180deg, rgba(21, 16, 38, 0.3), rgba(16, 27, 46, 0.2)); }
+
+    .price-block {
+      text-align: center;
+      padding: 24px 0 6px;
+    }
+    .price-was {
+      font-size: 0.96rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      text-decoration-color: var(--alert);
+      margin-bottom: 4px;
+    }
+    .price-now {
+      font-size: clamp(2.8rem, 12vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-now .cur { font-size: 1.3rem; vertical-align: super; font-weight: 700; color: var(--muted); }
+    .price-now .hl { color: var(--mint); }
+    .price-note { font-size: 0.86rem; color: var(--muted); line-height: 1.4; }
+    .discount-badge {
+      display: inline-block;
+      background: rgba(255, 184, 77, 0.14);
+      border: 1px solid rgba(255, 184, 77, 0.35);
+      color: var(--warm);
+      padding: 5px 12px; border-radius: 999px;
+      font-size: 0.74rem; font-weight: 800;
+      letter-spacing: 0.08em; margin-top: 11px;
+    }
+
+    /* STACK */
+    .stack {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      margin: 20px 0 14px;
+    }
+    .stack h3 {
+      font-size: 0.78rem; font-weight: 800;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mint); margin-bottom: 14px;
+    }
+    .stack-item {
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 10px; padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .stack-item:last-of-type { border-bottom: none; }
+    .stack-item b {
+      display: block;
       color: var(--text);
       font-size: 0.95rem;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+    .stack-item span {
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.4;
+    }
+    .stack-item .val {
+      color: var(--lavender);
+      font-weight: 700;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .stack-total {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-top: 14px; padding-top: 14px;
+      border-top: 2px solid var(--border);
+    }
+    .stack-total .label { color: var(--muted); font-size: 0.9rem; }
+    .stack-total .was {
+      color: var(--muted);
+      text-decoration: line-through;
+      font-weight: 800; font-size: 1.15rem;
+    }
+
+    /* SCARCITY */
+    .scarcity {
+      display: flex; gap: 11px; align-items: flex-start;
+      background: rgba(255, 107, 107, 0.08);
+      border: 1px solid rgba(255, 107, 107, 0.28);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0;
+    }
+    .scarcity .warn { flex-shrink: 0; font-size: 1.1rem; }
+    .scarcity p { font-size: 0.9rem; color: #E9D6D6; margin: 0; line-height: 1.5; }
+    .scarcity p strong { color: #FFB4B4; }
+
+    /* GUARANTEE */
+    .guarantee-block {
+      display: grid; gap: 12px;
+      grid-template-columns: 1fr;
+      margin: 16px 0;
+    }
+    .g-card {
+      background: rgba(124, 255, 203, 0.06);
+      border: 1px solid rgba(124, 255, 203, 0.28);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+    .g-card .tag {
+      color: var(--mint);
+      font-size: 0.74rem; font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .g-card p {
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .g-card strong { color: var(--mint); font-weight: 800; }
+
+    /* FAQ */
+    .faq-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 14px;
+    }
+    .faq-item { border-top: 1px solid var(--border); }
+    .faq-item:first-child { border-top: none; }
+    .faq-trigger {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; width: 100%;
+      padding: 16px 18px;
+      border: 0; background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-weight: 800;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.96rem;
+      line-height: 1.4;
+    }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      border: 1px solid rgba(185, 167, 255, 0.35);
+      border-radius: 999px;
+      position: relative;
+    }
+    .faq-icon::before, .faq-icon::after {
+      content: "";
+      position: absolute; left: 50%; top: 50%;
+      width: 10px; height: 2px; border-radius: 999px;
+      background: var(--lavender);
+      transform: translate(-50%, -50%);
+      transition: transform 180ms ease;
+    }
+    .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+    .faq-trigger[aria-expanded="true"] .faq-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+    .faq-panel {
+      max-height: 0; overflow: hidden;
+      transition: max-height 220ms ease, padding-bottom 220ms ease;
+    }
+    .faq-trigger[aria-expanded="true"] + .faq-panel { max-height: 500px; padding-bottom: 16px; }
+    .faq-panel p {
+      margin: 0; padding: 0 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
       line-height: 1.55;
     }
-    .ps-line:last-child { margin-bottom: 0; }
-    .ps-line strong {
+
+    /* P.S. */
+    .ps {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin: 18px 0 0;
+    }
+    .ps p {
+      color: #C7D4E8;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      margin: 0 0 11px;
+    }
+    .ps p:last-child { margin-bottom: 0; }
+    .ps .ps-tag {
       color: var(--mint);
       font-weight: 900;
     }
+    .ps p strong { color: var(--mint); }
 
-    .sticky-cta-mobile { display: none; }
+    .endline {
+      text-align: center;
+      padding: 26px 0 36px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-style: italic;
+      line-height: 1.55;
+      border-top: 1px solid var(--border);
+      margin-top: 18px;
+    }
+
+    /* STICKY CTA mobile */
+    .sticky-cta-mobile {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      padding: 12px 14px calc(14px + var(--safe-bottom));
+      background: linear-gradient(to top, var(--night) 60%, rgba(7,17,31,0.95) 85%, rgba(7,17,31,0));
+      z-index: 100;
+      transform: translate3d(0, 100%, 0);
+      transition: transform .25s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      will-change: transform;
+    }
+    .sticky-cta-mobile.is-visible {
+      transform: translate3d(0,0,0);
+      pointer-events: auto;
+    }
+    .sticky-cta-mobile .cta {
+      min-height: 52px;
+      font-size: 0.98rem;
+      padding: 14px 18px;
+      margin: 0;
+    }
+    body.has-sticky-cta { padding-bottom: calc(82px + var(--safe-bottom)); }
+
+    /* Reveal animation */
+    .reveal { opacity: 1; transform: none; }
+    .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms ease, transform 600ms ease; }
+    .js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Responsive — desktop */
+    @media (min-width: 720px) {
+      .section { padding: 56px 28px; }
+      .hero { padding: 36px 28px 40px; }
+      .hero-visual { min-height: 280px; }
+      .hero-visual img { min-height: 280px; }
+      .sticky-cta-mobile { display: none !important; }
+      body.has-sticky-cta { padding-bottom: 0; }
+      .protocol-cards { grid-template-columns: repeat(3, 1fr); }
+      .guarantee-block { grid-template-columns: 1fr 1fr; }
+      h1 { font-size: clamp(2.2rem, 5vw, 3rem); }
+    }
+
     @media (max-width: 768px) {
-      .sticky-cta-mobile {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-        background: rgba(7, 17, 31, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-top: 1px solid var(--border);
-        z-index: 100;
-        transform: translateY(110%);
-        transition: transform 280ms ease;
-        pointer-events: none;
+      .sticky-cta-mobile { display: block; }
+    }
+
+    @media (max-width: 380px) {
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.28rem; }
+      .price-now { font-size: 2.6rem; }
+      .symptoms { padding: 18px 16px; }
+      .symptom-list li { font-size: 0.92rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
-      .sticky-cta-mobile.is-visible {
-        transform: translateY(0);
-        pointer-events: auto;
-      }
-      .sticky-cta-mobile .cta {
-        width: 100%;
-        min-height: 50px;
-        font-size: 0.95rem;
-        margin: 0;
-      }
-      body.has-sticky-cta { padding-bottom: 80px; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
   <main class="page">
+
+    <!-- TOPBAR -->
+    <div class="topbar"><span class="pulse"></span>Pra cabeça que não desliga depois da meia-noite</div>
+
+    <!-- HERO -->
     <section class="section hero" aria-labelledby="hero-title">
-      <div class="section-inner hero-grid">
-        <!-- TIER 1: hero -->
-        <div class="hero-copy">
-          <p class="eyebrow">Pra cabeça que não desliga</p>
-          <h1 id="hero-title">Você não tem insônia. Tem uma cabeça que ninguém ensinou a desligar.</h1>
-          <p class="lead">7 noites pra parar de olhar o teto. Sem chá, sem app, sem "tenta dormir mais cedo".</p>
-          <p class="microcopy">Deita exausto. A cabeça abre planilha. Você sabe do que eu tô falando.</p>
-          <div class="hero-actions">
-            <a href="#oferta" class="cta" onclick="event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'})">PARAR DE OLHAR O TETO — R$19</a>
-          </div>
-          <ul class="trust-row" aria-label="Benefícios do acesso">
-            <li>Acesso imediato</li>
-            <li>PDF imprimível</li>
-            <li>7 noites</li>
-            <li>Garantia 14 dias</li>
-          </ul>
-          <div class="product-card mobile-product-card" aria-label="Mockup do Método Mente Desligada">
-            <strong>Método Mente Desligada</strong>
-            <span>Encerra o dia em 7 noites.</span>
-          </div>
-        </div>
+      <div class="section-inner">
+        <span class="hero-eyebrow">Método Mente Desligada</span>
+
+        <h1 id="hero-title">Sua mente acelera <span class="hl">quando a luz apaga?</span></h1>
+
+        <p class="lead">Um ritual de <strong>7 noites</strong> que finalmente diz pro seu cérebro que o dia acabou. Sem chá. Sem app. Sem melatonina.</p>
 
         <div class="hero-visual" aria-label="Imagem noturna calma com materiais do ritual">
           <picture>
             <source type="image/webp" srcset="assets/mente-desligada/hero-night-ritual-640.webp 640w, assets/mente-desligada/hero-night-ritual-1024.webp 1024w" sizes="(max-width: 719px) 100vw, 36vw">
             <img src="assets/mente-desligada/hero-night-ritual.jpg" width="1024" height="1024" alt="Cena noturna calma com diário, fones e luz suave para representar um ritual antes de dormir" fetchpriority="high" decoding="async">
           </picture>
-          <div class="hero-visual-overlay"></div>
-          <div class="product-card" aria-label="Mockup do Método Mente Desligada">
-            <div class="moon-mark" aria-hidden="true"></div>
-            <strong>Método Mente Desligada</strong>
-            <span>Encerra o dia em 7 noites.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section pain" aria-labelledby="pain-title">
-      <div class="section-inner pain-grid">
-        <!-- TIER 1: dor -->
-        <div class="pain-copy reveal">
-          <p class="eyebrow">O loop que ninguém devia viver</p>
-          <h2 id="pain-title">Você apaga a luz. A cabeça acende. Toda. Noite.</h2>
-          <p>Mensagem que não respondeu. Boleto. Conversa travada. Reunião amanhã. Tudo passa na hora exata em que o corpo pedia pra dormir.</p>
-          <p>1h47. 2h34. 3h. Calculando quantas horas ainda dá. Sabendo que não vai apagar.</p>
-          <p>Amanhã: cabeça pesando 10 kg, paciência no chão, e você funcionando no automático. Quinta igual. Sexta igual. Sábado pior.</p>
-          <p class="section-close">"Dormir mais cedo" não resolveu. "Relaxar antes" não resolveu. Porque o problema não é esse.</p>
         </div>
 
-        <ul class="pain-list reveal" aria-label="Sinais comuns do loop noturno">
-          <li>Lista de tarefas começa quando a luz apaga</li>
-          <li>Conversa travada volta no escuro</li>
-          <li>Acorda 3h e não volta a dormir</li>
+        <a href="#oferta" class="cta" onclick="event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'})">
+          QUERO DORMIR HOJE
+          <span class="small">Acesso imediato · R$ 19</span>
+        </a>
+
+        <ul class="trust-row" aria-label="Benefícios do acesso">
+          <li>+150 testaram</li>
+          <li>Acesso na hora</li>
+          <li>Garantia 14 dias</li>
+          <li>R$19 uma vez</li>
         </ul>
+
+        <!-- CHECKLIST DE SINTOMAS — Breethe style -->
+        <div class="symptoms" role="group" aria-label="Marque os sintomas que você reconhece">
+          <h3>Marca quantos sintomas você reconhece <span class="warn">(quem reconhece 3+ está no lugar certo):</span></h3>
+          <ul class="symptom-list">
+            <li><span class="box">✗</span> Deita exausto, mas a cabeça abre planilha</li>
+            <li><span class="box">✗</span> Acorda às 3h e não consegue voltar a dormir</li>
+            <li><span class="box">✗</span> Fica calculando "quantas horas ainda dá pra dormir"</li>
+            <li><span class="box">✗</span> Já testou chá, melatonina, app — não resolveu</li>
+            <li><span class="box">✗</span> Acorda mais cansado do que quando deitou</li>
+          </ul>
+          <p class="symptoms-footer">Se marcou 3 ou mais, esse método foi feito pra você.</p>
+        </div>
       </div>
     </section>
 
+    <!-- PAIN SECTION — PAS compacto -->
+    <section class="section pain" aria-labelledby="pain-title">
+      <div class="section-inner">
+        <p class="eyebrow reveal">A noite que se repete</p>
+        <h2 id="pain-title" class="reveal">Você apaga a luz. <br>A cabeça <span class="hl">acende.</span></h2>
+
+        <div class="reveal">
+          <p>Mensagem que não respondeu. Boleto. Conversa travada. Reunião amanhã. <strong>Tudo passa na hora exata em que o corpo pedia pra dormir.</strong></p>
+
+          <p><span class="pain-time">1h47</span> <span class="pain-time">2h34</span> <span class="pain-time">3h12</span><br>Calculando quantas horas ainda dá. Sabendo que não vai apagar.</p>
+
+          <p>Amanhã: cabeça pesando 10 kg, paciência no chão, café às 14h, e você funcionando no automático. <strong>Quinta igual. Sexta igual. Sábado pior.</strong></p>
+
+          <p class="mint"><strong>"Dormir mais cedo" não resolveu. "Relaxar antes" não resolveu. Porque o problema nunca foi esse.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTO 1 (espalhado — primeira prova social) -->
+    <section class="section" aria-label="Depoimento">
+      <div class="section-inner">
+        <div class="testimonial-inline reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">Eu tava no fundo do poço. Dormia 2 horas por noite, trabalhava com olho roxo, esquecia compromisso. Na terceira noite eu apaguei e só acordei com o despertador.</p>
+          <p class="author">— Marina P., 34, São Paulo</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MECHANISM — Novo Mecanismo + Autor cedo -->
     <section class="section mechanism" aria-labelledby="mechanism-title">
       <div class="section-inner">
-        <!-- TIER 1: mechanism -->
-        <div class="mechanism-copy reveal">
-          <p class="eyebrow">O passo que ninguém ensina</p>
-          <h2 id="mechanism-title">Todo animal encerra o dia. Menos você.</h2>
-          <p>Cachorro gira 3 vezes antes de deitar. Pássaro arruma cada pena. Criança tem banho, história, beijo, escuro. Eles sabem que o dia acabou porque o corpo recebeu o sinal. O adulto moderno fecha o notebook às 23h59 e tenta apagar às 00h01 — e ainda fica bravo com o cérebro por não cooperar. O sinal nunca foi mandado. Como ele ia obedecer uma ordem que ninguém deu?</p>
-          <p>Passei 2 anos assim. Terça, 23h, mandíbula travada no travesseiro, calculando se ainda dava pra dormir 5 horas. Já tinha tentado tudo que tem no Google: chá, melatonina, app de meditação, dormir mais cedo, contar carneirinho, parar de mexer no celular. Nada resolvia. Porque nada disso ataca o problema real.</p>
-          <p>Bluma Zeigarnik provou em 1927: tarefa não encerrada ocupa memória até ser fechada. Toda noite que você deita sem fechar o dia, o cérebro fica com 47 abas abertas. E você quer que ele desligue? Não desliga. Não pode. Não foi feito pra isso.</p>
-          <p>Sou o Bruno — ex-insone crônico, vivi cada uma dessas noites. Testei o protocolo em mais de 150 pessoas antes de soltar.</p>
-          <h3 class="mechanism-title">Protocolo Fecha-Abas</h3>
-          <div class="flow-line" aria-hidden="true">Inventário Cru <span>→</span> Freio 4-6 <span>→</span> Ordem Final</div>
+        <p class="eyebrow reveal">A causa que ninguém ataca</p>
+        <h2 id="mechanism-title" class="reveal">Não é falta de sono.<br><span class="hl">É falta de fechamento.</span></h2>
+
+        <div class="author-box reveal">
+          <div class="avatar">B</div>
+          <p class="text"><strong>Bruno aqui.</strong> Ex-insone crônico, 6 anos olhando o teto. Testei o protocolo em 150 pessoas antes de soltar pro mundo.</p>
         </div>
 
-        <div class="layers">
-          <article class="layer-card reveal" style="--accent: #B9A7FF;">
-            <h3>Inventário Cru</h3>
-            <p>Tudo que tá girando sai em 3 minutos. No papel, sem ordem.</p>
+        <div class="reveal">
+          <p>Em 1927, a psicóloga Bluma Zeigarnik provou: <strong>tarefa não encerrada ocupa memória até ser fechada.</strong></p>
+
+          <p>Toda noite que você deita sem fechar o dia, o cérebro fica com <span class="warn">47 abas abertas.</span> E você quer que ele desligue? <strong>Não desliga. Não pode. Não foi feito pra isso.</strong></p>
+
+          <p>Cachorro gira 3 vezes antes de deitar. Pássaro arruma cada pena. Criança tem banho, história, beijo, escuro. <span class="mint">Eles encerram o dia.</span> Você fecha o notebook às 23h59 e tenta apagar às 00h01 — e ainda fica bravo com o cérebro por não cooperar.</p>
+
+          <p><strong>O sinal nunca foi mandado.</strong> Como ele ia obedecer uma ordem que ninguém deu?</p>
+        </div>
+
+        <h3 class="reveal" style="margin-top: 24px; text-align: center;">Protocolo Fecha-Abas</h3>
+        <p class="reveal" style="text-align: center; color: var(--breath); font-weight: 700; margin-bottom: 4px;">3 passos. 7-10 minutos. Antes de apagar a luz.</p>
+
+        <div class="protocol-flow reveal" aria-hidden="true">
+          Inventário Cru <span>→</span> Freio 4-6 <span>→</span> Ordem Final
+        </div>
+
+        <div class="protocol-cards">
+          <article class="protocol-card reveal" style="--accent: #B9A7FF;">
+            <span class="time">3 minutos</span>
+            <h4>Inventário Cru</h4>
+            <p>Tudo que tá girando sai da cabeça e vai pro papel. Sem ordem, sem julgamento.</p>
           </article>
-          <article class="layer-card reveal" style="--accent: #A9D6E5;">
-            <h3>Freio 4-6</h3>
-            <p>Inspira 4, solta 6. O corpo entende em 90 segundos.</p>
+          <article class="protocol-card reveal" style="--accent: #A9D6E5;">
+            <span class="time">90 segundos</span>
+            <h4>Freio 4-6</h4>
+            <p>Inspira em 4, solta em 6. O corpo entende o sinal de "fim de turno".</p>
           </article>
-          <article class="layer-card reveal" style="--accent: #7CFFCB;">
-            <h3>Ordem Final</h3>
+          <article class="protocol-card reveal" style="--accent: #7CFFCB;">
+            <span class="time">1 frase</span>
+            <h4>Ordem Final</h4>
             <p>Uma frase encerra o dia. A cabeça aceita porque vem na ordem certa.</p>
           </article>
         </div>
 
-        <p class="section-close reveal">Por isso contar carneirinho falha. Por isso chá não desliga a cabeça. Por isso app não funciona. Você não precisa relaxar. Precisa <strong>encerrar</strong>. E ninguém nunca te ensinou como. Até agora.</p>
-        <!-- CTA intermediário -->
-        <a href="#oferta" class="cta" style="margin-top: 18px;" onclick="event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'})">QUERO MINHAS 7 NOITES</a>
+        <p class="reveal" style="margin-top: 18px; text-align: center; color: var(--text); font-weight: 700;">
+          Por isso chá não funciona. Por isso app não funciona. <span class="mint">Você não precisa relaxar — precisa encerrar.</span>
+        </p>
+
+        <a href="#oferta" class="cta reveal" style="margin-top: 22px;" onclick="event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'})">
+          VER COMO FUNCIONA
+          <span class="small">Acesso imediato · R$ 19</span>
+        </a>
       </div>
     </section>
 
-    <!-- BLOCO: Prova Social -->
-    <section class="section" aria-labelledby="social-title">
+    <!-- DEPOIMENTO 2 (espalhado) -->
+    <section class="section" aria-label="Depoimento">
       <div class="section-inner">
-        <div class="reveal">
-          <p class="eyebrow">Quem já fechou as abas</p>
-          <h2 id="social-title">7 noites depois</h2>
-        </div>
-        <!-- TIER 1: depoimentos -->
-        <div class="testimonials-grid reveal">
-          <article class="testimonial-card">
-            <p class="testimonial-quote">"Eu tava no fundo do poço. Dormia 2 horas por noite, trabalhava com olho roxo, esquecia compromisso. Na terceira noite eu apaguei e só acordei com o despertador. Chorei de alívio. Hoje meu Inventário Cru leva 8 minutos e eu durmo direto."</p>
-            <p class="testimonial-author">— Marina P., 34, gerente de marketing, São Paulo</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-quote">"Eu deitava revisando reunião do dia seguinte na cabeça. Ficava até 3h. Levantava arrasado. A Ordem Final travou esse loop na primeira noite — uma frase só, e a cabeça fechou. Sete dias depois, automático. Não acreditei que era tão simples."</p>
-            <p class="testimonial-author">— Rafael M., 41, gerente de projetos</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-quote">"Achei que ia ser igual aos outros métodos que eu comprei e larguei. Mas é simples e dá pra fazer cansada. Acordei 3h numa quarta, usei o Plano SOS, voltei a dormir em 15 minutos. Antes eu ficava até as 5h olhando o teto."</p>
-            <p class="testimonial-author">— Carolina S., 27, designer</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-quote">"Já tinha tentado melatonina, chá, app, terapia. Faltava o passo de fechamento. Fiz as 7 noites sem pular uma. A diferença não é mágica — minha cabeça finalmente entende que o dia acabou. Depois de 6 anos de insônia, isso é tudo."</p>
-            <p class="testimonial-author">— Fernanda L., 38, enfermeira</p>
-          </article>
+        <div class="testimonial-inline reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">Eu deitava revisando reunião do dia seguinte na cabeça. Ficava até 3h. A Ordem Final travou esse loop na primeira noite — uma frase só, e a cabeça fechou. Sete dias depois, virou automático.</p>
+          <p class="author">— Rafael M., 41, Curitiba</p>
         </div>
       </div>
     </section>
 
+    <!-- FUTURE PACING -->
+    <section class="section" aria-labelledby="future-title">
+      <div class="section-inner">
+        <p class="eyebrow reveal">O que muda em 7 noites</p>
+        <h2 id="future-title" class="reveal">Imagine sua próxima quarta-feira <span class="hl">às 23h</span></h2>
+
+        <div class="future reveal">
+          <p class="f-label">Daqui a 7 noites</p>
+          <p>Você apaga a luz. Faz o ritual em 7 minutos. <strong>A cabeça desacelera sozinha, sem você forçar nada.</strong> Não calcula quantas horas restam. Não pensa "será que vou conseguir dormir". Em poucos minutos, apaga. Acorda descansado. <strong>E percebe que faz dias que não pensa mais no problema.</strong></p>
+        </div>
+
+        <div class="future reveal" style="margin-top: 12px;">
+          <p class="f-label">A diferença real</p>
+          <p>Não é meditação (não precisa esvaziar a mente). Não é mindfulness (não precisa ficar "no presente"). É um <strong>protocolo cognitivo</strong> que diz pro cérebro: <span class="mint">"dia encerrado, pode desligar"</span>. E ele desliga.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER -->
     <section class="section offer" id="oferta" aria-labelledby="offer-title">
       <div class="section-inner">
-        <!-- TIER 1: oferta head -->
-        <div class="offer-head reveal">
-          <p class="eyebrow">Acesso imediato</p>
-          <h2 id="offer-title">O que vai acontecer com sua cabeça nas próximas 7 noites</h2>
-          <p class="lead">Método Mente Desligada — Protocolo Fecha-Abas. Acesso imediato.</p>
+        <p class="eyebrow reveal">Acesso imediato</p>
+        <h2 id="offer-title" class="reveal">7 noites pra <span class="hl">dormir de novo</span></h2>
+
+        <p class="reveal">Tudo digital. Acesso na hora do pagamento. PDF pra ler no celular ou imprimir. <strong>Seu pra sempre.</strong></p>
+
+        <div class="stack reveal">
+          <h3>O que você leva agora</h3>
+
+          <div class="stack-item">
+            <span>
+              <b>Protocolo Fecha-Abas (7 noites)</b>
+              <span>O ritual completo, dia a dia. Cada noite com foco específico.</span>
+            </span>
+            <span class="val">R$ 67</span>
+          </div>
+          <div class="stack-item">
+            <span>
+              <b>Plano SOS pras noites que você acorda 3h</b>
+              <span>4 passos pra voltar a dormir em até 20 minutos.</span>
+            </span>
+            <span class="val">R$ 47</span>
+          </div>
+          <div class="stack-item">
+            <span>
+              <b>Mapa visual + Checklist + Diário do Sono</b>
+              <span>Tudo em 1 página pra imprimir e colar perto da cama.</span>
+            </span>
+            <span class="val">R$ 37</span>
+          </div>
+          <div class="stack-item">
+            <span>
+              <b>Bônus: Protocolo Desligamento Rápido (90s)</b>
+              <span>Pra noites em que você só tem 90 segundos antes de cair de cansaço.</span>
+            </span>
+            <span class="val">R$ 27</span>
+          </div>
+          <div class="stack-item">
+            <span>
+              <b>Bônus: Cartões de Ordem Final</b>
+              <span>30 frases prontas pra encerrar o dia quando faltar criatividade.</span>
+            </span>
+            <span class="val">R$ 17</span>
+          </div>
+
+          <div class="stack-total">
+            <span class="label">Valor real:</span>
+            <span class="was">R$ 195</span>
+          </div>
         </div>
 
-        <div class="offer-box reveal">
-          <div class="offer-main">
-            <h3>Tudo pras próximas 7 noites</h3>
-            <ul class="check-list" aria-label="Itens incluídos no método">
-              <li>Protocolo Fecha-Abas para 7 noites</li>
-              <li>Mapa visual do método em 1 página</li>
-              <li>Checklist do Encerramento Diário</li>
-              <li>Diário rápido do sono</li>
-              <li>Plano SOS pras noites que você acorda 3h</li>
-            </ul>
+        <div class="price-block reveal">
+          <div class="price-was">De R$ 195</div>
+          <div class="price-now"><span class="cur">R$</span><span class="hl">19</span></div>
+          <div class="price-note">acesso imediato · PIX em segundos · seu pra sempre</div>
+          <div class="discount-badge">ECONOMIZA R$ 176 — LANÇAMENTO</div>
+        </div>
+
+        <div class="scarcity reveal">
+          <span class="warn" aria-hidden="true">⚠</span>
+          <p><strong>R$19 só no lançamento.</strong> Quando passar de 200 pessoas, sobe pra R$37. Cada noite adiada é mais uma 3h olhando o teto.</p>
+        </div>
+
+        <a href="https://pay.hotmart.com/C106034952E?off=xfs7413g&checkoutMode=10" target="_blank" rel="noopener noreferrer" class="cta reveal">
+          DORMIR HOJE — R$ 19
+          <span class="small">PIX em segundos · acesso na hora</span>
+        </a>
+
+        <p class="reveal" style="text-align: center; margin-top: 12px; font-size: 0.84rem; color: var(--muted); font-style: italic;">
+          Menos que um delivery. Mais do que uma noite tranquila vale.
+        </p>
+
+        <!-- GARANTIA DUPLA -->
+        <div class="guarantee-block reveal" style="margin-top: 22px;">
+          <div class="g-card">
+            <p class="tag">Garantia 1 — 14 dias</p>
+            <p>Compra, usa, testa. Se em 14 dias não tiver dormido melhor, <strong>devolvo cada centavo</strong>. Sem pergunta, sem formulário.</p>
           </div>
-
-          <div class="bonus-box">
-            <h3>Bônus práticos</h3>
-            <ul class="check-list" aria-label="Bônus incluídos">
-              <li>Protocolo Desligamento Rápido (90 segundos)</li>
-              <li>Rotina anti-celular de 10 minutos</li>
-              <li>Cartões de Ordem Final</li>
-            </ul>
-            <p class="mini-note">Noite 1: a cabeça começa a entender que o dia acabou. Noite 3: o ritual fica natural. Noite 7: automático antes de deitar. Sem esforço.</p>
-          </div>
-
-          <div class="practice-proof">
-            <p>Não é meditação. Não é chá. Não é app. É um protocolo que a cabeça segue.</p>
-          </div>
-
-          <div class="practice-proof">
-            <p>R$19. Menos que um delivery. Menos que uma cerveja. Menos do que UMA noite acordado te custa de produtividade amanhã. Consulta com especialista do sono passa de R$300. App de sono cobra todo mês. Isso aqui: R$19 uma vez. Seu pra sempre.</p>
-            
-            <!-- TIER 1: stack de valor -->
-            <div class="value-stack">
-              <p class="value-stack-title">O que você está levando:</p>
-              <ul class="value-stack-list">
-                <li><span>Protocolo Fecha-Abas (7 noites completas)</span><span class="value-amount">R$147</span></li>
-                <li><span>Plano SOS pras noites que acorda 3h</span><span class="value-amount">R$67</span></li>
-                <li><span>Mapa visual + Checklist + Diário do Sono</span><span class="value-amount">R$47</span></li>
-                <li><span>Bônus: Protocolo Desligamento Rápido (90s)</span><span class="value-amount">R$37</span></li>
-                <li><span>Bônus: Cartões de Ordem Final</span><span class="value-amount">R$37</span></li>
-                <li><span>Bônus: Rotina anti-celular de 10 minutos</span><span class="value-amount">R$27</span></li>
-              </ul>
-              <div class="value-stack-total">
-                <span>Valor total:</span><span class="value-total-amount">R$362</span>
-              </div>
-              <div class="value-stack-today">
-                <span>Hoje:</span><span class="value-today-amount">R$19</span>
-              </div>
-              <p class="value-stack-note">95% off porque é lançamento. Sobe pra R$37 quando fechar 200 pessoas.</p>
-            </div>
-
-            <h3>R$ 19 à vista — ou 2x de R$ 10,21</h3>
-            
-            <!-- TIER 1: dupla garantia -->
-            <ul class="check-list">
-              <li>Acesso imediato</li>
-            </ul>
-            <div class="double-guarantee">
-              <div class="guarantee-card">
-                <p class="guarantee-tag">Garantia 1 — 14 dias</p>
-                <p>Compra, usa, testa. Se em 14 dias não tiver dormido melhor, manda um e-mail. Devolvo cada centavo. Sem pergunta, sem formulário, sem complicação.</p>
-              </div>
-              <div class="guarantee-card">
-                <p class="guarantee-tag">Garantia 2 — Execução</p>
-                <p>Fez as 7 noites completas, todas, sem pular uma, e ainda assim não notou diferença? Manda print do diário do sono preenchido. Devolvo o dinheiro <strong>e você fica com todo o material</strong>. O risco é todo meu.</p>
-              </div>
-            </div>
-
-            <p class="mini-note">Cada noite adiada é mais uma 3h olhando o teto. Mais um amanhã pesado. Mais uma semana que termina pior do que começou.</p>
-            <p class="mini-note">R$19 hoje. R$37 quando passar de 200 pessoas. Decide rápido.</p>
-            <a href="https://pay.hotmart.com/C106034952E?off=xfs7413g&checkoutMode=10" target="_blank" rel="noopener noreferrer" class="cta" style="margin-top: 18px;">ENTRAR AGORA — R$19</a>
-            
-            <!-- TIER 1: PS final -->
-            <div class="ps-block">
-              <p class="ps-line"><strong>P.S.</strong> — Se você chegou até aqui é porque a coisa tá feia. 3h da manhã virou costume. R$19 é menos do que custou seu último delivery — só que esse aqui você não esquece, porque é o que vai te fazer dormir. Decide hoje.</p>
-              <p class="ps-line"><strong>P.P.S.</strong> — A garantia de 14 dias existe exatamente pra esse momento. Você não vai descobrir se funciona pensando. Vai descobrir fazendo. Se não funcionar, o dinheiro volta. O único risco real aqui é continuar acordado.</p>
-            </div>
+          <div class="g-card">
+            <p class="tag">Garantia 2 — Execução</p>
+            <p>Fez as 7 noites completas e ainda assim não notou diferença? Manda print do diário. <strong>Devolvo o dinheiro e você fica com tudo.</strong></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BLOCO: FAQ -->
+    <!-- DEPOIMENTO 3 (espalhado — após oferta) -->
+    <section class="section" aria-label="Depoimento">
+      <div class="section-inner">
+        <div class="testimonial-inline reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">Já tinha tentado melatonina, chá, app, terapia. Faltava o passo de fechamento. Fiz as 7 noites sem pular uma. Depois de 6 anos de insônia, minha cabeça finalmente entende que o dia acabou.</p>
+          <p class="author">— Fernanda L., 38, Porto Alegre</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
     <section class="section" aria-labelledby="faq-title">
       <div class="section-inner">
-        <div class="reveal">
-          <p class="eyebrow">Antes de comprar</p>
-          <h2 id="faq-title">Perguntas que você tá pensando</h2>
-        </div>
+        <p class="eyebrow reveal">Antes de comprar</p>
+        <h2 id="faq-title" class="reveal">As perguntas que <span class="hl">todo mundo faz</span></h2>
+
         <div class="faq-card reveal">
           <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false">1. Tenho insônia há anos. Vai funcionar comigo?<div class="faq-icon" aria-hidden="true"></div></button>
-            <div class="faq-panel">
-              <div>
-                <p>O método trata o tipo de noite em que a cabeça não desliga, não condição médica. Se sua dor é "durmo, mas a mente roda", é exatamente isso aqui. Se tem diagnóstico de insônia clínica, use junto com seu tratamento, não no lugar.</p>
-              </div>
-            </div>
+            <button class="faq-trigger" aria-expanded="false">Tenho insônia há anos. Vai funcionar comigo?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel"><p>O método trata noites em que a cabeça não desliga, não condição médica. Se sua dor é "durmo, mas a mente roda", é exatamente isso. Se tem diagnóstico clínico, use junto com seu tratamento — não no lugar.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false">2. Não é só respiração que eu acho de graça no YouTube?<div class="faq-icon" aria-hidden="true"></div></button>
-            <div class="faq-panel">
-              <div>
-                <p>Respirar é 1 dos 3 passos. Sozinha falha — você já testou. O que faz diferença é a ordem: descarregar antes, respirar no meio, fechar com uma frase. É o protocolo que a cabeça aceita, não a respiração isolada.</p>
-              </div>
-            </div>
+            <button class="faq-trigger" aria-expanded="false">Não é só respiração que eu acho no YouTube?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel"><p>Respirar é 1 dos 3 passos. Sozinha falha — você já testou. O que faz diferença é a ordem: descarregar antes, respirar no meio, fechar com uma frase. É o protocolo que a cabeça aceita.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false">3. Quanto tempo leva por noite?<div class="faq-icon" aria-hidden="true"></div></button>
-            <div class="faq-panel">
-              <div>
-                <p>De 7 a 10 minutos. Sem app, sem cronômetro. Cabe entre escovar o dente e apagar a luz.</p>
-              </div>
-            </div>
+            <button class="faq-trigger" aria-expanded="false">Quanto tempo leva por noite?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel"><p>7 a 10 minutos. Sem app, sem cronômetro. Cabe entre escovar o dente e apagar a luz.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false">4. Como recebo o material?<div class="faq-icon" aria-hidden="true"></div></button>
-            <div class="faq-panel">
-              <div>
-                <p>E-mail com link de acesso na hora que o pagamento confirma. PDF pra imprimir ou ler no celular. Tudo seu pra sempre.</p>
-              </div>
-            </div>
+            <button class="faq-trigger" aria-expanded="false">Como recebo o material?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel"><p>E-mail com link de acesso na hora que o pagamento confirma (PIX libera em segundos). PDF pra imprimir ou ler no celular. Tudo seu pra sempre.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false">5. E se não funcionar comigo?<div class="faq-icon" aria-hidden="true"></div></button>
-            <div class="faq-panel">
-              <div>
-                <p>14 dias de garantia incondicional. Manda um e-mail, sem pergunta, devolvo o valor cheio. O risco é meu.</p>
-              </div>
-            </div>
+            <button class="faq-trigger" aria-expanded="false">E se não funcionar comigo?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel"><p>14 dias de garantia incondicional. Manda um e-mail, sem pergunta, devolvo o valor cheio. O risco é meu.</p></div>
           </div>
           <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false">6. Tem que fazer toda noite pra sempre?<div class="faq-icon" aria-hidden="true"></div></button>
-            <div class="faq-panel">
-              <div>
-                <p>As 7 primeiras sim — é o que ensina a cabeça. Depois disso a maioria faz em 2 minutos no automático antes de deitar. Algumas pessoas usam só nas noites difíceis.</p>
-              </div>
-            </div>
+            <button class="faq-trigger" aria-expanded="false">Vai funcionar na primeira noite mesmo?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel"><p>A maioria sente diferença na 1ª ou 2ª noite. O hábito firma a partir da 7ª. Por isso o método tem 7 noites — não é mágica, é treino curto.</p></div>
           </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">Tem que fazer pra sempre?<div class="faq-icon" aria-hidden="true"></div></button>
+            <div class="faq-panel"><p>As 7 primeiras sim — é o que ensina a cabeça. Depois disso, a maioria faz em 2 minutos no automático. Algumas pessoas usam só nas noites difíceis.</p></div>
+          </div>
+        </div>
+
+        <!-- P.S. -->
+        <div class="ps reveal">
+          <p><span class="ps-tag">P.S.</span> Se você rolou até aqui é porque já sabe que a coisa tá feia. 3h da manhã virou costume. R$19 é menos do que custou seu último delivery — só que <strong>esse aqui é o que vai te fazer dormir.</strong></p>
+          <p><span class="ps-tag">P.P.S.</span> A garantia de 14 dias existe exatamente pra esse momento. Você não vai descobrir se funciona pensando. Vai descobrir fazendo. <strong>Se não funcionar, o dinheiro volta. O único risco real aqui é continuar acordado.</strong></p>
+        </div>
+
+        <a href="https://pay.hotmart.com/C106034952E?off=xfs7413g&checkoutMode=10" target="_blank" rel="noopener noreferrer" class="cta reveal" style="margin-top: 18px;">
+          ENTRAR AGORA — R$ 19
+          <span class="small">PIX em segundos · acesso imediato</span>
+        </a>
+
+        <div class="endline">
+          Você não precisa de mais força de vontade.<br>Precisa do passo que ninguém te ensinou.
         </div>
       </div>
     </section>
 
-    <!-- TIER 1: sticky CTA mobile -->
-    <div class="sticky-cta-mobile" id="stickyCta" aria-hidden="true">
-      <a href="#oferta" class="cta" onclick="event.preventDefault();document.getElementById('oferta').scrollIntoView({behavior:'smooth'})">ENTRAR AGORA — R$19</a>
-    </div>
-    </main>
+  </main>
+
+  <!-- STICKY CTA mobile -->
+  <div class="sticky-cta-mobile" id="stickyCta" aria-hidden="true">
+    <a href="https://pay.hotmart.com/C106034952E?off=xfs7413g&checkoutMode=10" target="_blank" rel="noopener noreferrer" class="cta">DORMIR HOJE — R$ 19</a>
+  </div>
 
   <script>
+    // FAQ accordion
+    document.querySelectorAll(".faq-trigger").forEach((button) => {
+      button.addEventListener("click", () => {
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        document.querySelectorAll(".faq-trigger").forEach((item) => item.setAttribute("aria-expanded", "false"));
+        button.setAttribute("aria-expanded", String(!isOpen));
+      });
+    });
+
+    // Reveal animation
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.02 });
+      document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+    } else {
+      document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
+    }
+
+    // Sticky CTA
+    const stickyCta = document.getElementById('stickyCta');
+    const heroSection = document.querySelector('.hero');
+    const offerSection = document.getElementById('oferta');
+    let heroPassed = false;
+    let offerInFocus = false;
+
+    function setStickyCtaVisibility() {
+      if (!stickyCta) return;
+      const shouldShow = heroPassed && !offerInFocus;
+      stickyCta.classList.toggle('is-visible', shouldShow);
+      document.body.classList.toggle('has-sticky-cta', shouldShow);
+      stickyCta.setAttribute('aria-hidden', String(!shouldShow));
+    }
+
+    if (stickyCta && heroSection && offerSection && "IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        heroPassed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        setStickyCtaVisibility();
+      }, { threshold: 0 }).observe(heroSection);
+
+      new IntersectionObserver((entries) => {
+        offerInFocus = entries[0].isIntersecting;
+        setStickyCtaVisibility();
+      }, { rootMargin: "0px 0px -40% 0px", threshold: 0 }).observe(offerSection);
+    }
+
+    // GA4/Ads tracking
     document.querySelectorAll('a[href*="hotmart.com"]').forEach(function(btn) {
       btn.addEventListener("click", function() {
         if (typeof gtag === "function") {
@@ -1596,165 +1173,66 @@
         }
       });
     });
+  </script>
 
-    const faqButtons = document.querySelectorAll(".faq-trigger");
-
-    faqButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const isOpen = button.getAttribute("aria-expanded") === "true";
-
-        faqButtons.forEach((item) => {
-          item.setAttribute("aria-expanded", "false");
-        });
-
-        button.setAttribute("aria-expanded", String(!isOpen));
-      });
-    });
-
-    // Sticky CTA mobile
-    const stickyCta = document.getElementById('stickyCta');
-    const heroSection = document.querySelector('.hero');
-    const offerSection = document.getElementById('oferta');
-    let heroPassed = false;
-    let offerInFocus = false;
-
-    function setStickyCtaVisibility() {
-      if (!stickyCta) return;
-      const shouldShow = heroPassed && !offerInFocus;
-      stickyCta.classList.toggle('is-visible', shouldShow);
-      document.body.classList.toggle('has-sticky-cta', shouldShow);
-      stickyCta.setAttribute('aria-hidden', String(!shouldShow));
-    }
-
-    if (stickyCta && heroSection && offerSection && "IntersectionObserver" in window) {
-      const heroObserver = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        heroPassed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-        setStickyCtaVisibility();
-      }, { threshold: 0 });
-
-      const offerObserver = new IntersectionObserver((entries) => {
-        offerInFocus = entries[0].isIntersecting;
-        setStickyCtaVisibility();
-      }, { rootMargin: "0px 0px -40% 0px", threshold: 0 });
-
-      heroObserver.observe(heroSection);
-      offerObserver.observe(offerSection);
-      setStickyCtaVisibility();
-    } else if (stickyCta && heroSection && offerSection) {
-      function updateStickyCtaFallback() {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        const offerTop = offerSection.getBoundingClientRect().top;
-        const offerBottom = offerSection.getBoundingClientRect().bottom;
-        const viewportHeight = window.innerHeight;
-        heroPassed = heroBottom < 0;
-        offerInFocus = offerTop <= viewportHeight * 0.6 && offerBottom >= 0;
-        setStickyCtaVisibility();
+  <!-- Hotmart tracking params (URL builder) -->
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var source = params.get('utm_source') || (params.get('fbclid') ? 'meta' : 'direto');
+      function getCookie(name) {
+        var match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+        return match ? decodeURIComponent(match.pop()) : '';
       }
-      window.addEventListener('scroll', updateStickyCtaFallback, { passive: true });
-      window.addEventListener('resize', updateStickyCtaFallback, { passive: true });
-      updateStickyCtaFallback();
-    }
-
-    const revealItems = document.querySelectorAll(".reveal");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
+      function setCookie(name, value) {
+        var secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=7776000; SameSite=Lax' + secure;
+      }
+      function buildFbp() {
+        var existingFbp = getCookie('_fbp');
+        if (existingFbp) return existingFbp;
+        var generatedFbp = 'fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 1000000000000000000);
+        setCookie('_fbp', generatedFbp);
+        return generatedFbp;
+      }
+      function buildFbc() {
+        var existingFbc = getCookie('_fbc');
+        var fbclid = params.get('fbclid');
+        if (existingFbc) return existingFbc;
+        if (!fbclid) return '';
+        var generatedFbc = 'fb.1.' + Date.now() + '.' + fbclid;
+        setCookie('_fbc', generatedFbc);
+        return generatedFbc;
+      }
+      var fbp = buildFbp();
+      var fbc = buildFbc();
+      var trackingParams = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id','fbclid','gclid','gbraid','wbraid'];
+      var botoes = document.querySelectorAll('a[href*="pay.hotmart.com"]');
+      botoes.forEach(function (botao) {
+        var checkoutUrl = new URL(botao.getAttribute('href'), window.location.href);
+        if (!checkoutUrl.searchParams.has('src')) {
+          checkoutUrl.searchParams.set('src', source);
+        }
+        trackingParams.forEach(function (key) {
+          var value = params.get(key);
+          if (value && !checkoutUrl.searchParams.has(key)) {
+            checkoutUrl.searchParams.set(key, value);
           }
         });
-      }, { threshold: 0.02 });
-
-      revealItems.forEach((item) => observer.observe(item));
-    } else {
-      revealItems.forEach((item) => item.classList.add("is-visible"));
-    }
+        if (fbp && !checkoutUrl.searchParams.has('fbp')) checkoutUrl.searchParams.set('fbp', fbp);
+        if (fbc && !checkoutUrl.searchParams.has('fbc')) checkoutUrl.searchParams.set('fbc', fbc);
+        if (!checkoutUrl.searchParams.has('xcod')) {
+          var xcod = ['fbp=' + fbp,'fbc=' + fbc,'fbclid=' + (params.get('fbclid') || '')].filter(function (item) { return item.split('=')[1]; }).join('|');
+          if (xcod) checkoutUrl.searchParams.set('xcod', xcod);
+        }
+        if (!checkoutUrl.searchParams.has('sck')) {
+          var sck = [params.get('utm_source') || '', params.get('utm_campaign') || '', params.get('utm_content') || '', params.get('fbclid') || ''].filter(Boolean).join('|');
+          if (sck) checkoutUrl.searchParams.set('sck', sck.slice(0, 255));
+        }
+        botao.setAttribute('href', checkoutUrl.toString());
+      });
+    })();
   </script>
-  <script>
-(function () {
-  var params = new URLSearchParams(window.location.search);
-  var source = params.get('utm_source') || (params.get('fbclid') ? 'meta' : 'direto');
-  function getCookie(name) {
-    var match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-    return match ? decodeURIComponent(match.pop()) : '';
-  }
-  function setCookie(name, value) {
-    var secure = window.location.protocol === 'https:' ? '; Secure' : '';
-    document.cookie = name + '=' + encodeURIComponent(value) + '; path=/; max-age=7776000; SameSite=Lax' + secure;
-  }
-  function buildFbp() {
-    var existingFbp = getCookie('_fbp');
-    if (existingFbp) return existingFbp;
-    var generatedFbp = 'fb.1.' + Date.now() + '.' + Math.floor(Math.random() * 1000000000000000000);
-    setCookie('_fbp', generatedFbp);
-    return generatedFbp;
-  }
-  function buildFbc() {
-    var existingFbc = getCookie('_fbc');
-    var fbclid = params.get('fbclid');
-    if (existingFbc) return existingFbc;
-    if (!fbclid) return '';
-    var generatedFbc = 'fb.1.' + Date.now() + '.' + fbclid;
-    setCookie('_fbc', generatedFbc);
-    return generatedFbc;
-  }
-  var fbp = buildFbp();
-  var fbc = buildFbc();
-  var trackingParams = [
-    'utm_source',
-    'utm_medium',
-    'utm_campaign',
-    'utm_content',
-    'utm_term',
-    'utm_id',
-    'fbclid',
-    'gclid',
-    'gbraid',
-    'wbraid'
-  ];
-  var botoes = document.querySelectorAll('a[href*="pay.hotmart.com"]');
-  botoes.forEach(function (botao) {
-    var checkoutUrl = new URL(botao.getAttribute('href'), window.location.href);
-    if (!checkoutUrl.searchParams.has('src')) {
-      checkoutUrl.searchParams.set('src', source);
-    }
-    trackingParams.forEach(function (key) {
-      var value = params.get(key);
-      if (value && !checkoutUrl.searchParams.has(key)) {
-        checkoutUrl.searchParams.set(key, value);
-      }
-    });
-    if (fbp && !checkoutUrl.searchParams.has('fbp')) {
-      checkoutUrl.searchParams.set('fbp', fbp);
-    }
-    if (fbc && !checkoutUrl.searchParams.has('fbc')) {
-      checkoutUrl.searchParams.set('fbc', fbc);
-    }
-    if (!checkoutUrl.searchParams.has('xcod')) {
-      var xcod = [
-        'fbp=' + fbp,
-        'fbc=' + fbc,
-        'fbclid=' + (params.get('fbclid') || '')
-      ].filter(function (item) {
-        return item.split('=')[1];
-      }).join('|');
-      if (xcod) checkoutUrl.searchParams.set('xcod', xcod);
-    }
-    if (!checkoutUrl.searchParams.has('sck')) {
-      var sck = [
-        params.get('utm_source') || '',
-        params.get('utm_campaign') || '',
-        params.get('utm_content') || '',
-        params.get('fbclid') || ''
-      ].filter(Boolean).join('|');
-      if (sck) checkoutUrl.searchParams.set('sck', sck.slice(0, 255));
-    }
-    botao.setAttribute('href', checkoutUrl.toString());
-  });
-})();
-</script>
+
 </body>
 </html>
